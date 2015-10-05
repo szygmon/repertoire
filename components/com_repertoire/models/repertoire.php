@@ -1,33 +1,32 @@
 <?php
-/**
- * Hello Model for Hello World Component
- * 
- * @package    Joomla.Tutorials
- * @subpackage Components
- * @link http://docs.joomla.org/Developing_a_Model-View-Controller_Component_-_Part_2
- * @license    GNU/GPL
- */
- 
-// No direct access
- 
-defined( '_JEXEC' ) or die( 'Restricted access' );
- 
-jimport( 'joomla.application.component.model' );
- 
-/**
- * Hello Model
- *
- * @package    Joomla.Tutorials
- * @subpackage Components
- */
-class RepertoireModelRepertoire extends JModelLegacy
-{
+
+defined('_JEXEC') or die('Restricted access');
+
+jimport('joomla.application.component.model');
+
+class RepertoireModelRepertoire extends JModelLegacy {
+
     /**
-    * Gets the greeting
-    * @return string The greeting to be displayed to the user
-    */
-    function getGreeting()
-    {
+     * Gets the greeting
+     * @return string The greeting to be displayed to the user
+     */
+    function getGreeting() {
         return 'Hello, World!';
     }
+
+    function getRepertoire() {
+        // Obtain a database connection
+        $db = JFactory::getDbo();
+        // Retrieve the shout
+        $query = $db->getQuery(true)
+                ->select('*')
+                ->from($db->quoteName('#__repertoire'));
+        // Prepare the query
+        $db->setQuery($query);
+        // Load the row.
+        $result = $db->loadObjectList();
+        
+        return array('rows' => $result, 'count' => count($result));
+    }
+
 }

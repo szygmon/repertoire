@@ -5,8 +5,8 @@ jimport('joomla.application.component.controller');
 
 class RepertoireController extends JControllerLegacy {
 
-    function display() {
-        parent::display(); //parent:: , odnosi si� do nazwy klasy bazowej(JController)
+    function __construct() {
+        parent::__construct();
     }
 
 }

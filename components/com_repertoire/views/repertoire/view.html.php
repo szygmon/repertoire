@@ -22,10 +22,14 @@ class RepertoireViewRepertoire extends JViewLegacy
 {
     function display($tpl = null)
     {
-        $model = &$this->getModel();
+        $model = $this->getModel();
         $greeting = $model->getGreeting();
         $this->assignRef( 'greeting',	$greeting );
- 
+        
+        
+        $this->assignRef('rows', $model->getRepertoire()['rows']);
+        $this->assignRef('count', $model->getRepertoire()['count']);
+        
         parent::display($tpl);
     }
 }
