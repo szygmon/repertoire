@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.02" method="upgrade">
+ <name>COM_REPERTOIRE</name>
+ <creationDate>2015-10-05</creationDate>
+ <author>Szymon Michalewicz (szygmon)</author>
+ <authorEmail>szygmon@gmail.command</authorEmail>
+ <authorUrl>http://szygmon.pl</authorUrl>
+ <copyright>Copyright (C) 2015 by szygmon</copyright>
+ <license>Wszelkie prawa zastrzeżone</license>
+ <!--  Ciąg version jest rejestrowane w tabeli -->
+ <version>1.01</version>
+ <!-- Opis jest opcjonalny i domyślnie nazwa -->
+ <description>Zarządzanie repertuarem muzycznym zespołów muzycznych</description>
+ 
+
+ <!-- Uwaga atrybut folder:site
+       Pliki zostana przeniesione do components/com_hello/  -->
+ <files folder="site">
+  <filename>controller.php</filename>
+  <filename>repertoire.php</filename>
+  <filename>index.html</filename>
+  <filename>views/index.html</filename>
+  <filename>views/repertoire/index.html</filename>
+  <filename>views/repertoire/view.html.php</filename>
+  <filename>views/repertoire/tmpl/default.php</filename>
+  <filename>views/repertoire/tmpl/index.html</filename>
+ </files>
+ 
+ <administration>
+ <languages folder="admin/language">
+			<language tag="pl-PL">pl-PL.com_repertoire.sys.ini</language>
+		</languages>
+  <!-- Administration Menu Section -->
+  <menu>COM_REPERTOIRE</menu>
+ 
+  <!-- Administrator lista plików -->
+	 <!-- Uwaga atrybut folder:admin
+       Pliki zostanć przeniesione do administrator/components/com_hello/  -->
+  <files folder="admin">
+   <filename>repertoire.php</filename>
+   <filename>index.html</filename>
+   <folder>language</folder>
+  </files>
+ 
+ </administration>
+</extension>
