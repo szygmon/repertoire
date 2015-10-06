@@ -13,16 +13,15 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 ?>
-
+<form action="index.php" method="post" name="adminForm" id="adminForm">
 <?php if (!empty($this->sidebar)) : ?>
-    <div id="j-sidebar-container" class="span2">
+        <div id="j-sidebar-container" class="span2">
         <?php echo $this->sidebar; ?>
-    </div>
-    <div id="j-main-container" class="span10">
-    <?php else : ?>
-        <div id="j-main-container">
+        </div>
+        <div id="j-main-container" class="span10">
+<?php else : ?>
+            <div id="j-main-container">
         <?php endif; ?>
-        <form action="<?php echo JRoute::_('index.php?option=com_repertoire'); ?>" method="post" name="adminForm" id="adminForm">   
             <table id="repertoire-list" class="table table-bordered table-hover dataTable">
                 <thead>
                     <tr>
@@ -36,23 +35,23 @@ JHtml::_('formbehavior.chosen', 'select');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i = 0; $i < $this->count; $i++) { ?>
+<?php for ($i = 0; $i < $this->count; $i++) { ?>
                         <tr>
-                            <td><?php echo JHtml::_('grid.id', $i, $this->rows[$i]->rep_id); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_title); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_artist); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_language); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_category); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_youtube); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_demo); ?></td>
+                            <td><?php echo JHtml::_('grid.id', $i, $this->zastepstwa[$i]->rep_id); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->zastepstwa[$i]->rep_id, $this->rows[$i]->rep_title); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->zastepstwa[$i]->rep_id, $this->rows[$i]->rep_artist); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->zastepstwa[$i]->rep_id, $this->rows[$i]->rep_language); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->zastepstwa[$i]->rep_id, $this->rows[$i]->rep_category); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->zastepstwa[$i]->rep_id, $this->rows[$i]->rep_youtube); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->zastepstwa[$i]->rep_id, $this->rows[$i]->rep_demo); ?></td>
                         </tr>
-                    <?php } ?>
+<?php } ?>
                 </tbody>
             </table>
+            <input type="hidden" name="option" value="com_zast" />
             <input type="hidden" name="task" value="" />
             <input type="hidden" name="boxchecked" value="0" />
-            <?php echo JHtml::_('form.token'); ?>
-    </div>
+        </div>
 </form>
 
 <script type="text/javascript">
@@ -65,7 +64,7 @@ JHtml::_('formbehavior.chosen', 'select');
         "bAutoWidth": false,
         "aoColumnDefs": [{
                 'bSortable': false,
-                'aTargets': [0, 5, 6] // wyłączenie sortowania dla tych kolumn
+                'aTargets': [0,5,6] // wyłączenie sortowania dla tych kolumn
             }]
     });
 </script>

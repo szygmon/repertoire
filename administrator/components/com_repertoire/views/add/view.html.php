@@ -28,8 +28,8 @@ class RepertoireViewRepertoire extends JViewLegacy {
         JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_LIST'), 'stack article');
 
         // przyciski
-        JToolBarHelper::addNew('add');
-        JToolBarHelper::editList('edit');
+        JToolBarHelper::addNew('addNew');
+        JToolBarHelper::editList('editabs');
         JToolBarHelper::deleteList('Na pewno usunąć?', 'del');
         JToolbarHelper::preferences('com_repertoire');
     }

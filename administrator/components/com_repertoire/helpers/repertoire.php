@@ -16,6 +16,10 @@ class RepertoireHelper extends JHelper
 			JText::_('COM_REPERTOIRE_PARTY'),
 			'index.php?option=com_repertoire&view=party',
 			$vName == 'party');
+                JHtmlSidebar::addEntry(
+			JText::_('COM_REPERTOIRE_IMPORT'),
+			'index.php?option=com_repertoire&view=import',
+			$vName == 'import');
 	}
 
 }
