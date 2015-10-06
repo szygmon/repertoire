@@ -41,6 +41,10 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
         "bFilter": true,
         "bSort": true,
         "bInfo": true,
-        "bAutoWidth": false
+        "bAutoWidth": false,
+        "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [4,5] // wyłączenie sortowania dla tych kolumn
+            }]
     });
 </script>
