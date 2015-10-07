@@ -1,10 +1,8 @@
 <?php
-
+// No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.model');
-
-class RepertoireModelRepertoire extends JModelLegacy {
+class RepertoireModelRepertoire extends JModelItem {
 
     /**
      * Gets the greeting

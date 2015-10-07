@@ -1,4 +1,5 @@
 <?php
+// No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 $replink = str_replace(JPATH_SITE, '', JPATH_COMPONENT);

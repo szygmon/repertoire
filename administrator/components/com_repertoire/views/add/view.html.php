@@ -1,23 +1,20 @@
 <?php
-defined('_JEXEC') or die;
-jimport('joomla.application.component.view');
 
-class RepertoireViewRepertoire extends JViewLegacy {
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+
+class RepertoireViewAdd extends JViewLegacy {
 
     protected $items;
     protected $pagination;
 
     function display($tpl = null) {
-        //global $option;
-        RepertoireHelper::addSubmenu('list');
+        // Get the Data
+        $this->form = $this->get('Form');
+        $this->item = $this->get('Item');
 
         $this->addToolbar();
-        $this->sidebar = JHtmlSidebar::render();
-
-
-        $model = $this->getModel();
-        $this->assignRef('rows', $model->getRepertoire()['rows']);
-        $this->assignRef('count', $model->getRepertoire()['count']);
+        //$this->sidebar = JHtmlSidebar::render();
 
         parent::display($tpl);
     }
@@ -25,11 +22,13 @@ class RepertoireViewRepertoire extends JViewLegacy {
     protected function addToolbar() {
 
         // tytuł strony
-        JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_LIST'), 'stack article');
+        JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_ADD'), 'stack article');
 
+        $isNew = ($this->item->id == 0);
+        
         // przyciski
-        JToolBarHelper::addNew('addNew');
-        JToolBarHelper::editList('editabs');
+        JToolBarHelper::save('save');
+        JToolBarHelper::cancel('cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
         JToolBarHelper::deleteList('Na pewno usunąć?', 'del');
         JToolbarHelper::preferences('com_repertoire');
     }

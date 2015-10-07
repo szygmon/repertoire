@@ -1,20 +1,16 @@
 <?php
-
+// No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
-jimport('joomla.application.component.view');
 
 class RepertoireViewRepertoire extends JViewLegacy {
 
     function display($tpl = null) {
-        $model = $this->getModel();
-        $greeting = $model->getGreeting();
-        $this->assignRef('greeting', $greeting);
 
-
-        $this->assignRef('rows', $model->getRepertoire()['rows']);
-        $this->assignRef('count', $model->getRepertoire()['count']);
-
+        // przypisanie zmiennych dla widoku z modelu
+        $this->greeting = $this->get('Greeting');
+        $this->rows = $this->get('Repertoire')['rows'];
+        $this->count = $this->get('Repertoire')['count'];
+        
         parent::display($tpl);
     }
 

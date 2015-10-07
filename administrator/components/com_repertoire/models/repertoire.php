@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die();
 jimport('joomla.application.component.model');
-class RepertoireModelRepertoire extends JModelLegacy
+class RepertoireModelRepertoire extends JModelItem
 {
 	function getRepertoire() {
         // Obtain a database connection

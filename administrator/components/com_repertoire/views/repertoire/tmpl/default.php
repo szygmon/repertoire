@@ -39,12 +39,12 @@ JHtml::_('formbehavior.chosen', 'select');
                     <?php for ($i = 0; $i < $this->count; $i++) { ?>
                         <tr>
                             <td><?php echo JHtml::_('grid.id', $i, $this->rows[$i]->rep_id); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_title); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_artist); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_language); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_category); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_youtube); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&view=edit&zastid=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_demo); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_title); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_artist); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_language); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_category); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_youtube); ?></td>
+                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_demo); ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
