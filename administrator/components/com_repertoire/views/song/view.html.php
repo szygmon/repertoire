@@ -34,7 +34,9 @@ class RepertoireViewSong extends JViewLegacy {
         JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . $title, 'stack article');
 
         // przyciski
+        //JToolbarHelper::apply('song.applay'); ///nie działa???
         JToolBarHelper::save('song.save');
+        JToolbarHelper::save2new('song.save2new');
         JToolBarHelper::cancel('song.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
     }
 
