@@ -11,6 +11,7 @@ class RepertoireViewSong extends JViewLegacy {
         // Get the Data
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
+        $this->script = $this->get('Script');
 
         $this->addToolbar();
 

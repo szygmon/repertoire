@@ -12,6 +12,11 @@ class RepertoireHelper extends JHelper
 			'index.php?option=com_repertoire',
 			$vName == 'list'
 		);
+                JHtmlSidebar::addEntry(
+			JText::_('COM_REPERTOIRE_CATEGORIES'),
+			'index.php?option=com_repertoire&view=categories',
+			$vName == 'categories'
+		);
 		JHtmlSidebar::addEntry(
 			JText::_('COM_REPERTOIRE_PARTY'),
 			'index.php?option=com_repertoire&view=party',

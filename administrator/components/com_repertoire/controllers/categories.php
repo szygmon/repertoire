@@ -2,7 +2,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
  
-class RepertoireControllerSongs extends JControllerAdmin
+class RepertoireControllerCategories extends JControllerAdmin
 {
 	/**
 	 * Proxy for getModel.

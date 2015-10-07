@@ -1,9 +1,9 @@
 <?php
 // No direct access
 defined('_JEXEC') or die('Restricted access');
-
+ 
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_repertoire&layout=edit&id=' . (int) $this->item->id); ?>"
+<form action="<?php echo JRoute::_('index.php?option=com_repertoire&view=categories&layout=edit&id=' . (int) $this->item->id); ?>"
     method="post" name="adminForm" id="adminForm">
     <div class="form-horizontal">
         <fieldset class="adminform">
@@ -19,6 +19,6 @@ defined('_JEXEC') or die('Restricted access');
             </div>
         </fieldset>
     </div>
-    <input type="hidden" name="task" value="song.edit" />
+    <input type="hidden" name="task" value="category.edit" />
     <?php echo JHtml::_('form.token'); ?>
 </form>
