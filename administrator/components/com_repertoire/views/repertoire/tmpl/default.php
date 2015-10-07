@@ -57,7 +57,7 @@ JHtml::_('formbehavior.chosen', 'select');
 </form>
 
 <script type="text/javascript">
-    $('#repertoire-list').dataTable({
+    var table = $('#repertoire-list').dataTable({
         "bPaginate": true,
         "bLengthChange": true,
         "bFilter": true,
@@ -69,4 +69,5 @@ JHtml::_('formbehavior.chosen', 'select');
                 'aTargets': [0, 5, 6] // wyłączenie sortowania dla tych kolumn
             }]
     });
+    table.fnSort( [ [1,'asc'] ] ); // sortowanie wg tytułu
 </script>
