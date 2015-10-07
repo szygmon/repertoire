@@ -1,39 +1,40 @@
 <?php
-defined('_JEXEC') or die;
-jimport('joomla.application.component.view');
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
 
 class RepertoireViewRepertoire extends JViewLegacy {
 
-    protected $items;
-    protected $pagination;
+    protected $form = null;
 
     function display($tpl = null) {
-        //global $option;
+        // Check for errors.
+        if (count($errors = $this->get('Errors'))) {
+            JError::raiseError(500, implode('<br />', $errors));
+
+            return false;
+        }
+
         RepertoireHelper::addSubmenu('list');
 
         $this->addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 
-
-        $model = $this->getModel();
-        $this->assignRef('rows', $model->getRepertoire()['rows']);
-        $this->assignRef('count', $model->getRepertoire()['count']);
+        // przypisanie zmiennych dla widoku z modelu
+        $this->rows = $this->get('Repertoire')['rows'];
+        $this->count = $this->get('Repertoire')['count'];
 
         parent::display($tpl);
     }
 
     protected function addToolbar() {
-
         // tytuł strony
         JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_LIST'), 'stack article');
 
         // przyciski
-        JToolBarHelper::addNew('add');
-        JToolBarHelper::editList('edit');
-        JToolBarHelper::deleteList('Na pewno usunąć?', 'del');
+        JToolBarHelper::addNew('song.add');
+        JToolBarHelper::editList('song.edit');
+        JToolBarHelper::deleteList(JText::_('COM_REPERTOIRE_CONFIRM_DELETE'), 'songs.del');
         JToolbarHelper::preferences('com_repertoire');
     }
 
 }
-
-?> 

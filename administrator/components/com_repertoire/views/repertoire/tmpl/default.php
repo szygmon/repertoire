@@ -1,13 +1,11 @@
 <?php
-defined('_JEXEC') or die;
+// No direct access to this file
+defined('_JEXEC') or die('Restricted Access');
 
 $document = JFactory::getDocument();
 $document->addStyleSheet('http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css');
 $document->addScript('http://code.jquery.com/jquery-1.10.2.min.js');
 $document->addScript('../components/com_repertoire/js/jquery.dataTables.js');
-
-
-//JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
@@ -26,7 +24,7 @@ JHtml::_('formbehavior.chosen', 'select');
             <table id="repertoire-list" class="table table-bordered table-hover dataTable">
                 <thead>
                     <tr>
-                        <th width="1%" align="center"><input type="checkbox" name="checkall-toggle" value="" class="hasTooltip" title="" onclick="Joomla.checkAll(this)" data-original-title="Zaznacz wszystko" /></th>
+                        <th width="1%" align="center"><?php echo JHtml::_('grid.checkall'); ?></th>
                         <th><a href="#" onclick="return false;" class="js-stools-column-order hasTooltip" data-order="a.title" data-direction="ASC" data-name="<?php echo JText::_('COM_REPERTOIRE_TITLE'); ?>" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></strong><br /><?php echo JText::_('JGLOBAL_CLICK_TO_SORT_THIS_COLUMN'); ?>"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></a></th>
                         <th><a href="#" onclick="return false;" class="js-stools-column-order hasTooltip" data-order="a.title" data-direction="ASC" data-name="<?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?>" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></strong><br /><?php echo JText::_('JGLOBAL_CLICK_TO_SORT_THIS_COLUMN'); ?>"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></a></th>
                         <th><a href="#" onclick="return false;" class="js-stools-column-order hasTooltip" data-order="a.title" data-direction="ASC" data-name="<?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?>" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></strong><br /><?php echo JText::_('JGLOBAL_CLICK_TO_SORT_THIS_COLUMN'); ?>"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></a></th>
@@ -36,17 +34,20 @@ JHtml::_('formbehavior.chosen', 'select');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i = 0; $i < $this->count; $i++) { ?>
+                    <?php
+                    foreach ($this->rows as $row) :
+                        $link = JRoute::_('index.php?option=com_repertoire&task=song.edit&id=' . $row->id);
+                        ?>
                         <tr>
-                            <td><?php echo JHtml::_('grid.id', $i, $this->rows[$i]->rep_id); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_title); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_artist); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_language); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_category); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_youtube); ?></td>
-                            <td><?php echo JHTML::_('link', 'index.php?option=com_zast&task=edit&id=' . $this->rows[$i]->rep_id, $this->rows[$i]->rep_demo); ?></td>
+                            <td class="nowrap center hidden-phone"><?php echo JHtml::_('grid.id', $i, $row->id); ?></td>
+                            <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->title; ?></a></td>
+                            <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->artist; ?></a></td>
+                            <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->language; ?></a></td>
+                            <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->category; ?></a></td>
+                            <td><?php echo $row->youtube; ?></td>
+                            <td><?php echo $row->demo; ?></td>
                         </tr>
-                    <?php } ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <input type="hidden" name="task" value="" />

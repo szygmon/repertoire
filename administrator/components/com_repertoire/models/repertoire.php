@@ -1,9 +1,10 @@
 <?php
-defined('_JEXEC') or die();
-jimport('joomla.application.component.model');
-class RepertoireModelRepertoire extends JModelItem
-{
-	function getRepertoire() {
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+
+class RepertoireModelRepertoire extends JModelList {
+
+    function getRepertoire() {
         // Obtain a database connection
         $db = JFactory::getDbo();
         // Retrieve the shout
@@ -14,8 +15,8 @@ class RepertoireModelRepertoire extends JModelItem
         $db->setQuery($query);
         // Load the row.
         $result = $db->loadObjectList();
-        
+
         return array('rows' => $result, 'count' => count($result));
     }
+
 }
-?>

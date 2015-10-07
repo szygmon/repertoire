@@ -24,12 +24,12 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
     <tbody>
         <?php for ($i = 0; $i < $this->count; $i++) { ?>
             <tr>
-                <td><?php echo $this->rows[$i]->rep_title; ?></td>
-                <td><?php echo $this->rows[$i]->rep_artist; ?></td>
-                <td><?php echo $this->rows[$i]->rep_language; ?></td>
-                <td><?php echo $this->rows[$i]->rep_category; ?></td>
-                <td><?php echo $this->rows[$i]->rep_youtube; ?></td>
-                <td><?php echo $this->rows[$i]->rep_demo; ?></td>
+                <td><?php echo $this->rows[$i]->title; ?></td>
+                <td><?php echo $this->rows[$i]->artist; ?></td>
+                <td><?php echo $this->rows[$i]->language; ?></td>
+                <td><?php echo $this->rows[$i]->category; ?></td>
+                <td><?php echo $this->rows[$i]->youtube; ?></td>
+                <td><?php echo $this->rows[$i]->demo; ?></td>
             </tr>
         <?php } ?>
     </tbody>
