@@ -50,7 +50,7 @@
             accept="audio/mp3"
         />
         <field
-            name="youtube"
+            name="demo_video"
             type="text"
             label="COM_REPERTOIRE_DEMO_VIDEO_FORM"
             description="COM_REPERTOIRE_DEMO_VIDEO_FORM_DESC"
