@@ -2,7 +2,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access'); 
 
-JLoader::register('RepertoireHelper', __DIR__ . '/helpers/repertoire.php');
+JLoader::register('RepertoireHelper', JPATH_COMPONENT . '/helpers/repertoire.php');
 
 // Get an instance of the controller prefixed by HelloWorld
 $controller = JControllerLegacy::getInstance('Repertoire');

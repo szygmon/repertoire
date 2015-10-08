@@ -17,7 +17,8 @@ class RepertoireModelRepertoire extends JModelItem {
         $db = JFactory::getDbo();
         // Retrieve the shout
         $query = $db->getQuery(true)
-                ->select('*')
+                ->select('#__repertoire.*, #__categories.title as category')
+                ->leftJoin('#__categories on catid=#__categories.id')
                 ->from($db->quoteName('#__repertoire'));
         // Prepare the query
         $db->setQuery($query);

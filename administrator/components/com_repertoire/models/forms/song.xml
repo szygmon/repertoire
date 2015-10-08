@@ -21,13 +21,15 @@
             default=""
         />
         <field
-            name="category"
+            name="catid"
             type="category"
             extension="com_repertoire"
             label="COM_REPERTOIRE_CATEGORY"
             description="COM_REPERTOIRE_CATEGORY_DESC"
             class="inputbox"
-            default="">
+            default=""
+            required="true"
+        >
             <option value="0">JOPTION_SELECT_CATEGORY</option>
         </field>
         <field

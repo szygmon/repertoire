@@ -17,7 +17,7 @@ class RepertoireViewRepertoire extends JViewLegacy {
         RepertoireHelper::addSubmenu('list');
 
         $this->addToolbar();
-        $this->sidebar = JHtmlSidebar::render();
+        //$this->sidebar = JHtmlSidebar::render();
 
         // przypisanie zmiennych dla widoku z modelu
         $this->rows = $this->get('Repertoire')['rows'];
