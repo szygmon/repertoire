@@ -24,7 +24,7 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
     <tbody>
         <?php
         foreach ($this->rows as $row) :
-            $search = $row->title.'+'.$row->artist;
+            $search = $row->title . '+' . $row->artist;
             $ytlink = $row->youtube == '' ? 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search) : $row->youtube;
             ?>
             <tr>
@@ -33,7 +33,15 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
                 <td><?php echo $row->language; ?></td>
                 <td><?php echo $row->category; ?></td>
                 <td class="center" style="padding: 7px;"><a href="<?php echo $ytlink; ?>" target="_blank"><img src="<?php echo $replink; ?>/images/yt.png" /></a></td>
-                <td><?php echo $row->demo; ?></td>
+                <td>
+                    <?php if ($row->demo): ?>
+                        <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
+                            <param name="wmode" value="transparent">
+                            <param name="movie" value="plugins/content/josdewplayer/dewplayer.swf">
+                            <param name="flashvars" value="mp3=images/demomp3/<?php echo $row->demo; ?>&amp;autostart=0&amp;autoreplay=0&amp;showtime=1">
+                        </object>
+                    <?php endif ?>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
