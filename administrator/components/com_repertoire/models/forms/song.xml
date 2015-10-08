@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form addrulepath="/administrator/components/com_repertoire/models/rules">
+<form>
     <fieldset>
 		
         <field
@@ -58,6 +58,14 @@
             size="50"
             class="inputbox"
             default=""
+        />
+        <field 
+            name="mp3" 
+            type="file" 
+            label="mp3" 
+            description="Wybierz plik mp3" 
+            size="10240"
+            accept="audio/mp3"
         />
         <field
             name="id"
