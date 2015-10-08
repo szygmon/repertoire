@@ -49,6 +49,17 @@
             size="10240"
             accept="audio/mp3"
         />
+        <field name="removemp3"
+               type="radio"
+               id="removemp3"
+               class="btn-group btn-group-yesno"
+               label="COM_REPERTOIRE_REMOVE_MP3"
+               description="COM_REPERTOIRE_REMOVE_MP3_DESC"
+               default="1"
+        >
+            <option value="1">JNO</option>
+            <option value="0">JYES</option>
+        </field>
         <field
             name="demo_video"
             type="text"

@@ -1,10 +1,9 @@
 <?php
 // No direct access
 defined('_JEXEC') or die('Restricted access');
-
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_repertoire&layout=edit&id=' . (int) $this->item->id); ?>"
-    method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
+      method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
     <div class="form-horizontal">
         <fieldset class="adminform">
             <div class="row-fluid">
@@ -15,6 +14,11 @@ defined('_JEXEC') or die('Restricted access');
                             <div class="controls"><?php echo $field->input; ?></div>
                         </div>
                     <?php endforeach; ?>
+                    <?php if (!$this->item->demo_audio): ?>
+                        <script type="text/javascript">
+                            jQuery("div.control-group:eq(5)").hide();
+                        </script>
+                    <?php endif; ?>
                 </div>
             </div>
         </fieldset>

@@ -1,4 +1,5 @@
 <?php
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
@@ -35,11 +36,12 @@ class RepertoireControllerSong extends JControllerForm {
         // wywołanie rodzica
         parent::save($key, $urlVar);
 
+        // Obtain a database connection
+        $db = JFactory::getDbo();
+
         if ($file['mp3']['error'] == 0) {
             JFile::upload($src, $dest);
 
-            // Obtain a database connection
-            $db = JFactory::getDbo();
             if ($songid != 0) {
                 $query = $db->getQuery(true)
                         ->update($db->quoteName('#__repertoire'))
@@ -49,7 +51,6 @@ class RepertoireControllerSong extends JControllerForm {
                 $db->setQuery($query);
                 $db->execute();
             } else {
-
                 // szukanie ostatnio dodanego id utworu
                 $query = $db->getQuery(true)
                         ->select('id')
@@ -70,6 +71,31 @@ class RepertoireControllerSong extends JControllerForm {
                 $db->setQuery($query);
                 $db->execute();
             }
+        }
+        // usuwanie mp3
+        if (JFactory::getApplication()->input->get('jform', array(), 'array')['removemp3'] == 0) {
+            $query = $db->getQuery(true)
+                    ->select('demo_audio')
+                    ->from($db->quoteName('#__repertoire'))
+                    ->where('id=' . $songid)
+                    ->setLimit(1);
+
+            // Prepare the query
+            $db->setQuery($query);
+            // Load the row.
+            $result = $db->loadRow();
+
+            // usuwanie pliku z serwera
+            JFile::delete($folder . "/" . $result[0]);
+            
+            // usuwanie wpisu w BD
+            $query = $db->getQuery(true)
+                    ->update($db->quoteName('#__repertoire'))
+                    ->set('demo_audio = ""')
+                    ->where('id=' . $songid);
+
+            $db->setQuery($query);
+            $db->execute();
         }
     }
 
