@@ -20,9 +20,7 @@ class RepertoireControllerSong extends JControllerForm {
         // nazwa pliku - małe znaki, usuwanie pl znaków i spacji, bezpieczna nazwa
         $filename = strtolower($file['mp3']['name']);
         $filename = str_replace(
-                array('ę', 'ó', 'ą', 'ś', 'ł', 'ż', 'ź', 'ć', 'ń', ' '), 
-                array('e', 'o', 'a', 's', 'l', 'z', 'z', 'c', 'n', ''), 
-                $filename);
+                array('ę', 'ó', 'ą', 'ś', 'ł', 'ż', 'ź', 'ć', 'ń', ' '), array('e', 'o', 'a', 's', 'l', 'z', 'z', 'c', 'n', ''), $filename);
         $filename = JFile::makeSafe($filename);
         $folder = JPATH_SITE . "/" . "images" . "/" . "demomp3";
 
@@ -34,35 +32,35 @@ class RepertoireControllerSong extends JControllerForm {
         $src = $file['mp3']['tmp_name'];
         $dest = $folder . "/" . $filename;
 
-        if (isset($file['mp3'])) {
-            JFile::upload($src, $dest);
-        }
-
         // wywołanie rodzica
         parent::save($key, $urlVar);
-        
-        // Obtain a database connection
-        $db = JFactory::getDbo();
-        // szukanie ostatnio dodanego id utworu
-        $query = $db->getQuery(true)
-                ->select('id')
-                ->from($db->quoteName('#__repertoire'))
-                ->order('id DESC')
-                ->setLimit(1);
 
-        // Prepare the query
-        $db->setQuery($query);
-        // Load the row.
-        $result = $db->loadRow();
-        
-        $query = $db->getQuery(true)
-                ->update($db->quoteName('#__repertoire'))
-                ->set('demo = "'.$filename.'"')
-                ->where('id='.$result[0]);
-        // Prepare the query
-        $db->setQuery($query);
-        
-        $db->execute();
+        if ($file['mp3']['error'] == 0) {
+            JFile::upload($src, $dest);
+
+            // Obtain a database connection
+            $db = JFactory::getDbo();
+            // szukanie ostatnio dodanego id utworu
+            $query = $db->getQuery(true)
+                    ->select('id')
+                    ->from($db->quoteName('#__repertoire'))
+                    ->order('id DESC')
+                    ->setLimit(1);
+
+            // Prepare the query
+            $db->setQuery($query);
+            // Load the row.
+            $result = $db->loadRow();
+
+            $query = $db->getQuery(true)
+                    ->update($db->quoteName('#__repertoire'))
+                    ->set('demo = "' . $filename . '"')
+                    ->where('id=' . $result[0]);
+            // Prepare the query
+            $db->setQuery($query);
+
+            $db->execute();
+        }
     }
 
 }

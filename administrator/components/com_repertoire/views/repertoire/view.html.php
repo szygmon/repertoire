@@ -33,7 +33,7 @@ class RepertoireViewRepertoire extends JViewLegacy {
         // przyciski
         JToolBarHelper::addNew('song.add');
         JToolBarHelper::editList('song.edit');
-        JToolBarHelper::deleteList(JText::_('COM_REPERTOIRE_CONFIRM_DELETE'), 'songs.del');
+        JToolBarHelper::deleteList(JText::_('COM_REPERTOIRE_CONFIRM_DELETE'), 'songs.delete');
         JToolbarHelper::preferences('com_repertoire');
     }
 
