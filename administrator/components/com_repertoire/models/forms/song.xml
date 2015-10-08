@@ -10,6 +10,7 @@
             size="50"
             class="inputbox"
             default=""
+            required="true"
         />
         <field
             name="artist"
@@ -28,7 +29,6 @@
             description="COM_REPERTOIRE_CATEGORY_DESC"
             class="inputbox"
             default=""
-            required="true"
         >
             <option value="0">JOPTION_SELECT_CATEGORY</option>
         </field>
@@ -41,31 +41,30 @@
             class="inputbox"
             default=""
         />
+        <field 
+            name="mp3" 
+            type="file" 
+            label="COM_REPERTOIRE_DEMO_AUDIO_FORM" 
+            description="COM_REPERTOIRE_DEMO_AUDIO_FORM_DESC" 
+            size="10240"
+            accept="audio/mp3"
+        />
         <field
             name="youtube"
             type="text"
-            label="COM_REPERTOIRE_YOUTUBE"
-            description="COM_REPERTOIRE_CATEGORY_DESC"
-            size="50"
-            class="inputbox"
-            default=""
-        />
-        <field
-            name="demo"
-            type="text"
-            label="COM_REPERTOIRE_DEMO"
-            description="COM_REPERTOIRE_CATEGORY_DESC"
+            label="COM_REPERTOIRE_DEMO_VIDEO_FORM"
+            description="COM_REPERTOIRE_DEMO_VIDEO_FORM_DESC"
             size="50"
             class="inputbox"
             default=""
         />
         <field 
-            name="mp3" 
-            type="file" 
-            label="mp3" 
-            description="Wybierz plik mp3" 
-            size="10240"
-            accept="audio/mp3"
+            name="date" 
+            type="calendar" 
+            format="%Y-%m-%d"
+            default="NOW" 
+            label="COM_REPERTOIRE_DATE" 
+            description="COM_REPERTOIRE_DATE_DESC" 
         />
         <field
             name="id"

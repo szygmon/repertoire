@@ -7,31 +7,33 @@ $document->addStyleSheet('http://cdn.datatables.net/1.10.9/css/jquery.dataTables
 $document->addScript('http://code.jquery.com/jquery-1.10.2.min.js');
 $document->addScript('../components/com_repertoire/js/jquery.dataTables.js');
 
-JHtml::_('bootstrap.tooltip');
+//JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
 if (!empty($this->sidebar)) :
     ?>
     <div id="j-sidebar-container" class="span2">
-    <?php echo $this->sidebar; ?>
+        <?php echo $this->sidebar; ?>
     </div>
     <div id="j-main-container" class="span10">
-        <?php else : ?>
+    <?php else : ?>
         <div id="j-main-container">
-<?php endif; ?>
+        <?php endif; ?>
         <form action="<?php echo JRoute::_('index.php?option=com_repertoire'); ?>" method="post" name="adminForm" id="adminForm">   
             <table id="repertoire-list" class="table table-bordered table-hover dataTable">
                 <thead>
                     <tr>
-                        <th width="1%" align="center"><?php echo JHtml::_('grid.checkall'); ?></th>
-                        <th><a href="#" onclick="return false;" class="js-stools-column-order hasTooltip" data-order="a.title" data-direction="ASC" data-name="<?php echo JText::_('COM_REPERTOIRE_TITLE'); ?>" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></strong><br /><?php echo JText::_('JGLOBAL_CLICK_TO_SORT_THIS_COLUMN'); ?>"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></a></th>
-                        <th><a href="#" onclick="return false;" class="js-stools-column-order hasTooltip" data-order="a.title" data-direction="ASC" data-name="<?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?>" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></strong><br /><?php echo JText::_('JGLOBAL_CLICK_TO_SORT_THIS_COLUMN'); ?>"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></a></th>
-                        <th><a href="#" onclick="return false;" class="js-stools-column-order hasTooltip" data-order="a.title" data-direction="ASC" data-name="<?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?>" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></strong><br /><?php echo JText::_('JGLOBAL_CLICK_TO_SORT_THIS_COLUMN'); ?>"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></a></th>
-                        <th><a href="#" onclick="return false;" class="js-stools-column-order hasTooltip" data-order="a.title" data-direction="ASC" data-name="<?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?>" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></strong><br /><?php echo JText::_('JGLOBAL_CLICK_TO_SORT_THIS_COLUMN'); ?>"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></a></th>
-                        <th><?php echo JText::_('COM_REPERTOIRE_YOUTUBE'); ?></th>
-                        <th><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
+                        <th rowspan="2" width="1%" align="center"><?php echo JHtml::_('grid.checkall'); ?></th>
+                        <th rowspan="2" width="34%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+                        <th rowspan="2" width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
+                        <th rowspan="2" width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+                        <th rowspan="2" width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
+                        <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
                     </tr>
+                    <tr>
+                        <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
+                        <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
                 </thead>
                 <tbody>
                     <?php
@@ -44,22 +46,34 @@ if (!empty($this->sidebar)) :
                             <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->artist; ?></a></td>
                             <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->language; ?></a></td>
                             <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->category; ?></a></td>
-                            <td><?php echo $row->youtube; ?></td>
-                            <td><?php echo $row->demo; ?></td>
+                            <td>
+                                <?php if ($row->demo_audio): ?>
+                                    <object type="application/x-shockwave-flash" data="../plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
+                                        <param name="wmode" value="transparent">
+                                        <param name="movie" value="../plugins/content/josdewplayer/dewplayer.swf">
+                                        <param name="flashvars" value="mp3=../images/demomp3/<?php echo $row->demo_audio; ?>&amp;autostart=0&amp;autoreplay=0&amp;showtime=1">
+                                    </object>
+                                <?php endif ?>
+                            </td>
+                            <td class="center" style="padding: 7px;">
+                                <?php if ($row->demo_video): ?>
+                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="../components/com_repertoire/images/yt.png" /></a>
+                                <?php endif ?>
+                            </td>
                         </tr>
-<?php endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <input type="hidden" name="task" value="" />
             <input type="hidden" name="boxchecked" value="0" />
-<?php echo JHtml::_('form.token'); ?>
+            <?php echo JHtml::_('form.token'); ?>
     </div>
 </form>
 
 <script type="text/javascript">
     var table = $('#repertoire-list').dataTable({
-        "bPaginate": true,
-        "bLengthChange": true,
+        "bPaginate": false, // wyłączone bo coś nie działa
+        "bLengthChange": false, //"iDisplayLength": 50
         "bFilter": true,
         "bSort": true,
         "bInfo": true,

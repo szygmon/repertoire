@@ -1,5 +1,4 @@
 <?php
-
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
@@ -17,6 +16,7 @@ class RepertoireControllerSong extends JControllerForm {
 
         $input = JFactory::getApplication()->input;
         $file = $input->files->get('jform');
+        $songid = JRequest::getVar('id');
         // nazwa pliku - małe znaki, usuwanie pl znaków i spacji, bezpieczna nazwa
         $filename = strtolower($file['mp3']['name']);
         $filename = str_replace(
@@ -40,26 +40,36 @@ class RepertoireControllerSong extends JControllerForm {
 
             // Obtain a database connection
             $db = JFactory::getDbo();
-            // szukanie ostatnio dodanego id utworu
-            $query = $db->getQuery(true)
-                    ->select('id')
-                    ->from($db->quoteName('#__repertoire'))
-                    ->order('id DESC')
-                    ->setLimit(1);
+            if ($songid != 0) {
+                $query = $db->getQuery(true)
+                        ->update($db->quoteName('#__repertoire'))
+                        ->set('demo_audio = "' . $filename . '"')
+                        ->where('id=' . $songid);
 
-            // Prepare the query
-            $db->setQuery($query);
-            // Load the row.
-            $result = $db->loadRow();
+                $db->setQuery($query);
+                $db->execute();
+            } else {
 
-            $query = $db->getQuery(true)
-                    ->update($db->quoteName('#__repertoire'))
-                    ->set('demo = "' . $filename . '"')
-                    ->where('id=' . $result[0]);
-            // Prepare the query
-            $db->setQuery($query);
+                // szukanie ostatnio dodanego id utworu
+                $query = $db->getQuery(true)
+                        ->select('id')
+                        ->from($db->quoteName('#__repertoire'))
+                        ->order('id DESC')
+                        ->setLimit(1);
 
-            $db->execute();
+                // Prepare the query
+                $db->setQuery($query);
+                // Load the row.
+                $result = $db->loadRow();
+
+                $query = $db->getQuery(true)
+                        ->update($db->quoteName('#__repertoire'))
+                        ->set('demo_audio = "' . $filename . '"')
+                        ->where('id=' . $result[0]);
+
+                $db->setQuery($query);
+                $db->execute();
+            }
         }
     }
 
