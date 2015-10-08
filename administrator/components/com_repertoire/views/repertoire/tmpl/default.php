@@ -10,16 +10,16 @@ $document->addScript('../components/com_repertoire/js/jquery.dataTables.js');
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
-?>
 
-<?php if (!empty($this->sidebar)) : ?>
+if (!empty($this->sidebar)) :
+    ?>
     <div id="j-sidebar-container" class="span2">
-        <?php echo $this->sidebar; ?>
+    <?php echo $this->sidebar; ?>
     </div>
     <div id="j-main-container" class="span10">
-    <?php else : ?>
+        <?php else : ?>
         <div id="j-main-container">
-        <?php endif; ?>
+<?php endif; ?>
         <form action="<?php echo JRoute::_('index.php?option=com_repertoire'); ?>" method="post" name="adminForm" id="adminForm">   
             <table id="repertoire-list" class="table table-bordered table-hover dataTable">
                 <thead>
@@ -47,12 +47,12 @@ JHtml::_('formbehavior.chosen', 'select');
                             <td><?php echo $row->youtube; ?></td>
                             <td><?php echo $row->demo; ?></td>
                         </tr>
-                    <?php endforeach; ?>
+<?php endforeach; ?>
                 </tbody>
             </table>
             <input type="hidden" name="task" value="" />
             <input type="hidden" name="boxchecked" value="0" />
-            <?php echo JHtml::_('form.token'); ?>
+<?php echo JHtml::_('form.token'); ?>
     </div>
 </form>
 
@@ -69,5 +69,5 @@ JHtml::_('formbehavior.chosen', 'select');
                 'aTargets': [0, 5, 6] // wyłączenie sortowania dla tych kolumn
             }]
     });
-    table.fnSort( [ [1,'asc'] ] ); // sortowanie wg tytułu
+    table.fnSort([[1, 'asc']]); // sortowanie wg tytułu
 </script>
