@@ -8,8 +8,7 @@ class RepertoireViewRepertoire extends JViewLegacy {
 
         // przypisanie zmiennych dla widoku z modelu
         $this->greeting = $this->get('Greeting');
-        $this->rows = $this->get('Repertoire')['rows'];
-        $this->count = $this->get('Repertoire')['count'];
+        $this->rows = $this->get('Repertoire');
         
         parent::display($tpl);
     }

@@ -22,16 +22,20 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
         </tr>
     </thead>
     <tbody>
-        <?php for ($i = 0; $i < $this->count; $i++) { ?>
+        <?php
+        foreach ($this->rows as $row) :
+            $search = $row->title.'+'.$row->artist;
+            $ytlink = $row->youtube == '' ? 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search) : $row->youtube;
+            ?>
             <tr>
-                <td><?php echo $this->rows[$i]->title; ?></td>
-                <td><?php echo $this->rows[$i]->artist; ?></td>
-                <td><?php echo $this->rows[$i]->language; ?></td>
-                <td><?php echo $this->rows[$i]->category; ?></td>
-                <td><?php echo $this->rows[$i]->youtube; ?></td>
-                <td><?php echo $this->rows[$i]->demo; ?></td>
+                <td><?php echo $row->title; ?></td>
+                <td><?php echo $row->artist; ?></td>
+                <td><?php echo $row->language; ?></td>
+                <td><?php echo $row->category; ?></td>
+                <td class="center" style="padding: 7px;"><a href="<?php echo $ytlink; ?>" target="_blank"><img src="<?php echo $replink; ?>/images/yt.png" /></a></td>
+                <td><?php echo $row->demo; ?></td>
             </tr>
-        <?php } ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
 
@@ -45,7 +49,7 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
         "bAutoWidth": false,
         "aoColumnDefs": [{
                 'bSortable': false,
-                'aTargets': [4,5] // wyłączenie sortowania dla tych kolumn
+                'aTargets': [4, 5] // wyłączenie sortowania dla tych kolumn
             }]
     });
 </script>

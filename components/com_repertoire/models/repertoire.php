@@ -25,7 +25,7 @@ class RepertoireModelRepertoire extends JModelItem {
         // Load the row.
         $result = $db->loadObjectList();
         
-        return array('rows' => $result, 'count' => count($result));
+        return $result;
     }
 
 }
