@@ -32,7 +32,12 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
             $ytlink = 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search);
             ?>
             <tr>
-                <td><a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a></td>
+                <td>
+                    <?php if (date("Y-m-d", strtotime("-1 month")) < $row->date): ?>
+                        <img src="<?php echo $replink; ?>/images/new.png" />
+                    <?php endif ?>
+                    <a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a>
+                </td>
                 <td><?php echo $row->artist; ?></td>
                 <td><?php echo $row->language; ?></td>
                 <td><?php echo $row->category; ?></td>
