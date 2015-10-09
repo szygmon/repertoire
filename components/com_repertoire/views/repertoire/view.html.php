@@ -10,6 +10,8 @@ class RepertoireViewRepertoire extends JViewLegacy {
         $this->greeting = $this->get('Greeting');
         $this->rows = $this->get('Repertoire');
         
+        $this->params = JComponentHelper::getParams('com_repertoire');///->get('show_category'));//->get('dashboardID'));
+        
         parent::display($tpl);
     }
 

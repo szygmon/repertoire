@@ -26,6 +26,14 @@
             <option value="0">JHIDE</option>
             <option value="1">JSHOW</option>
         </field>
+        <field 
+            name="positions" 
+            type="text" 
+            default="100" 
+            label="COM_REPERTOIRE_POSITIONS" 
+            description="COM_REPERTOIRE_POSITIONS_DESC" 
+            filter="integer" 
+        />
     </fieldset>
     <fieldset
         name="greetings2"

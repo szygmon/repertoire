@@ -7,22 +7,30 @@ $document = JFactory::getDocument();
 $document->addStyleSheet('http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css');
 $document->addScript('http://code.jquery.com/jquery-1.10.2.min.js');
 $document->addScript($replink . '/js/jquery.dataTables.js');
+
+$span = $this->params->get('show_demo') ? 'rowspan="2"' : '';
 ?>
 
 <h1><?php echo $this->greeting; ?></h1>
 <table id="repertoire-list" class="table table-bordered table-hover dataTable">
     <thead>
         <tr>
-            <th rowspan="2" width="35%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
-            <th rowspan="2" width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
-            <th rowspan="2" width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-            <th rowspan="2" width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
-            <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
+            <th <?php echo $span; ?> width="35%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+            <th <?php echo $span; ?> width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
+            <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+            <?php if ($this->params->get('show_category')): ?>
+                <th <?php echo $span; ?> width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
+            <?php endif; ?>
+            <?php if ($this->params->get('show_demo')): ?>
+                <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
+            <?php endif; ?>
         </tr>
-        <tr>
-            <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
-            <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
-        </tr>
+        <?php if ($this->params->get('show_demo')): ?>
+            <tr>
+                <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
+                <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
+            </tr>
+        <?php endif; ?>
     </thead>
     <tbody>
         <?php
@@ -40,21 +48,25 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
                 </td>
                 <td><?php echo $row->artist; ?></td>
                 <td><?php echo $row->language; ?></td>
-                <td><?php echo $row->category; ?></td>
-                <td>
-                    <?php if ($row->demo_audio): ?>
-                        <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
-                            <param name="wmode" value="transparent">
-                            <param name="movie" value="plugins/content/josdewplayer/dewplayer.swf">
-                            <param name="flashvars" value="mp3=images/demomp3/<?php echo $row->demo_audio; ?>&amp;autostart=0&amp;autoreplay=0&amp;showtime=1">
-                        </object>
-                    <?php endif ?>
-                </td>
-                <td class="center" style="padding: 7px;">
-                    <?php if ($row->demo_video): ?>
-                        <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="<?php echo $replink; ?>/images/yt.png" /></a>
-                    <?php endif ?>
-                </td>
+                <?php if ($this->params->get('show_category')): ?>
+                    <td><?php echo $row->category; ?></td>
+                <?php endif; ?>
+                <?php if ($this->params->get('show_demo')): ?>
+                    <td>
+                        <?php if ($row->demo_audio): ?>
+                            <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
+                                <param name="wmode" value="transparent">
+                                <param name="movie" value="plugins/content/josdewplayer/dewplayer.swf">
+                                <param name="flashvars" value="mp3=images/demomp3/<?php echo $row->demo_audio; ?>&amp;autostart=0&amp;autoreplay=0&amp;showtime=1">
+                            </object>
+                        <?php endif ?>
+                    </td>
+                    <td class="center" style="padding: 7px;">
+                        <?php if ($row->demo_video): ?>
+                            <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="<?php echo $replink; ?>/images/yt.png" /></a>
+                        <?php endif ?>
+                    </td>
+                <?php endif; ?>
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -62,15 +74,27 @@ $document->addScript($replink . '/js/jquery.dataTables.js');
 
 <script type="text/javascript">
     $('#repertoire-list').dataTable({
-        "bPaginate": true,
-        "bLengthChange": true,
-        "bFilter": true,
-        "bSort": true,
-        "bInfo": true,
-        "bAutoWidth": false,
-        "aoColumnDefs": [{
-                'bSortable': false,
+    "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+            "iDisplayLength": <?php echo $this->params->get('positions'); ?>
+<?php 
+    
+
+/*if ($this->params->get('show_category') && $this->params->get('show_demo')): ?>
+        , "aoColumnDefs": [{
+        'bSortable': false,
                 'aTargets': [4, 5] // wyłączenie sortowania dla tych kolumn
-            }]
+        }]
+<?php elseif ((!$this->params->get('show_category') && $this->params->get('show_demo')) || ($this->params->get('show_category') && !$this->params->get('show_demo'))): ?>
+        , "aoColumnDefs": [{
+        'bSortable': false,
+                'aTargets': [3, 4] // wyłączenie sortowania dla tych kolumn
+        }]
+<?php endif */ ?>
+
     });
 </script>
