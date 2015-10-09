@@ -3,15 +3,6 @@
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireModelRepertoire extends JModelItem {
-
-    /**
-     * Gets the greeting
-     * @return string The greeting to be displayed to the user
-     */
-    function getGreeting() {
-        return 'Hello, World!';
-    }
-
     function getRepertoire() {
         // Obtain a database connection
         $db = JFactory::getDbo();

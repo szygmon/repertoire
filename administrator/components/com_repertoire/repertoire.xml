@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.0" method="upgrade">
+<extension type="component" version="3.4" method="upgrade">
  <name>COM_REPERTOIRE</name>
  <creationDate>2015-10-05</creationDate>
  <author>Szymon Michalewicz (szygmon)</author>
@@ -8,9 +8,9 @@
  <copyright>Copyright (C) 2015 by szygmon</copyright>
  <license>Wszelkie prawa zastrzeżone</license>
  <!--  Ciąg version jest rejestrowane w tabeli -->
- <version>1.01</version>
+ <version>1.05</version>
  <!-- Opis jest opcjonalny i domyślnie nazwa -->
- <description>Zarządzanie repertuarem muzycznym zespołów muzycznych</description>
+ <description>COM_REPERTOIRE_DESC</description>
  
  <install> <!-- Runs on install -->
 		<sql>
@@ -65,7 +65,7 @@
    <filename>excel_reader2.php</filename>
    <filename>index.html</filename>
    <folder>language</folder>
-   <folder>controller</folder>
+   <folder>controllers</folder>
    <folder>helpers</folder>
    <folder>models</folder>
    <folder>sql</folder>
