@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset
+        name="greetings"
+        label="COM_REPERTOIRE_LIST_CONFIG_LABEL"
+    >
+        <field
+            name="show_category"
+            type="radio"
+            label="COM_REPERTOIRE_SHOW_CATEGORY"
+            description="COM_REPERTOIRE_SHOW_CATEGORY_DESC"
+            class="btn-group btn-group-yesno"
+            default="1"
+        >
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field
+            name="show_demo"
+            type="radio"
+            label="COM_REPERTOIRE_SHOW_DEMO"
+            description="COM_REPERTOIRE_SHOW_DEMO_DESC"
+            class="btn-group btn-group-yesno"
+            default="1"
+        >
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+    </fieldset>
+    <fieldset
+        name="greetings2"
+        label="COM_REPERTOIRE_PRE_TEXT"
+    >
+        <field 
+            name="pre_text" 
+            label ="COM_REPERTOIRE_PRE_TEXT" 
+            description="COM_REPERTOIRE_PRE_TEXT_DESC"
+            type="editor" 
+            buttons="true"
+            filter="safehtml" 
+        />
+    </fieldset>
+    <fieldset
+        name="greetings3"
+        label="COM_REPERTOIRE_POST_TEXT"
+    >
+        <field 
+            name="post_text" 
+            label ="COM_REPERTOIRE_POST_TEXT" 
+            description="COM_REPERTOIRE_POST_TEXT_DESC"
+            type="editor" 
+            buttons="true"
+            filter="safehtml" 
+        />
+    </fieldset>
+</config>
