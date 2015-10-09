@@ -2,7 +2,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class RepertoireViewRepertoire extends JViewLegacy {
+class RepertoireViewImport extends JViewLegacy {
 
     protected $form = null;
 
@@ -14,26 +14,25 @@ class RepertoireViewRepertoire extends JViewLegacy {
             return false;
         }
 
-        RepertoireHelper::addSubmenu('list');
+        RepertoireHelper::addSubmenu('import');
 
         $this->addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 
-        // przypisanie zmiennych dla widoku z modelu
-        $this->rows = $this->get('Repertoire')['rows'];
-        //$this->count = $this->get('Repertoire')['count'];
-
+        // Info o wymaganiach pliku
+        $application = JFactory::getApplication();
+        $application->enqueueMessage(JText::_('COM_REPERTOIRE_IMPORT_INFO'), 'notice');
+        
+        
         parent::display($tpl);
     }
 
     protected function addToolbar() {
         // tytuł strony
-        JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_LIST'), 'stack article');
+        JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_IMPORT'), 'stack article');
 
         // przyciski
-        JToolBarHelper::addNew('song.add');
-        JToolBarHelper::editList('song.edit');
-        JToolBarHelper::deleteList(JText::_('COM_REPERTOIRE_CONFIRM_DELETE'), 'songs.delete');
+        JToolBarHelper::apply('import.import', JText::_('COM_REPERTOIRE_IMPORT_NOW'));
         JToolbarHelper::preferences('com_repertoire');
     }
 
