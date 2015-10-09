@@ -45,7 +45,7 @@
             description="COM_REPERTOIRE_PRE_TEXT_DESC"
             type="editor" 
             buttons="true"
-            filter="safehtml" 
+            filter="JComponentHelper::filterText" 
         />
     </fieldset>
     <fieldset
