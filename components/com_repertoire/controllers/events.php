@@ -1,5 +1,4 @@
 <?php
-
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
@@ -7,7 +6,6 @@ class RepertoireControllerEvents extends JControllerForm {
 
     public function __construct($config = array()) {
         parent::__construct($config);
-        //$this->view_list = 'events'; // przekierowanie po zapisie/edycji...
     }
 
     // sprawdzanie poprawnego hasła i daty
@@ -25,16 +23,18 @@ class RepertoireControllerEvents extends JControllerForm {
         } else
             $this->setRedirect('index.php?option=com_repertoire&view=events', JText::_('COM_REPERTOIRE_EVENTS_CHECK_ERROR'), 'error');
     }
-    
+
+    // dodawanie utworów do bazy
     public function add() {
-        $songs = JRequest::getVar('cid',array(),'','array');
+        $songs = JRequest::getVar('cid', array(), '', 'array');
         $event = JRequest::getVar('eventid');
         foreach ($songs as $song) {
             $this->getModel()->addSong($song, $event);
         }
-        
-        $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_EVENTS_ADD_SUCCESS'));
-        //var_dump(); die();
-    }
+        // zerowanie sesji po poprawnym dodaniu
+        $session = JFactory::getSession();
+        $session->set('events', 0);
 
+        $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_EVENTS_ADD_SUCCESS'));
+    }
 }
