@@ -21,9 +21,20 @@ class RepertoireControllerEvents extends JControllerForm {
             $session = JFactory::getSession();
             $session->set('events', $cid);
 
-            $this->setRedirect('index.php?option=com_repertoire&view=events&layout=mylist&id=' . $cid);
+            $this->setRedirect('index.php?option=com_repertoire&view=events&layout=mylist&id=' . $cid, JText::_('COM_REPERTOIRE_EVENTS_YOUR_LIST'));
         } else
             $this->setRedirect('index.php?option=com_repertoire&view=events', JText::_('COM_REPERTOIRE_EVENTS_CHECK_ERROR'), 'error');
+    }
+    
+    public function add() {
+        $songs = JRequest::getVar('cid',array(),'','array');
+        $event = JRequest::getVar('eventid');
+        foreach ($songs as $song) {
+            $this->getModel()->addSong($song, $event);
+        }
+        
+        $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_EVENTS_ADD_SUCCESS'));
+        //var_dump(); die();
     }
 
 }

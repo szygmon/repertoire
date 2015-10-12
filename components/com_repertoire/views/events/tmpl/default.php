@@ -39,7 +39,7 @@ $document->addScript('/media/system/js/calendar-setup.js');
     </div>
 
 
-    <input type="submit" name="step2" value="<?php echo JText::_('COM_REPERTOIRE_NEXT'); ?>" />
+    <input type="submit" name="step2" value="<?php echo JText::_('COM_REPERTOIRE_NEXT'); ?>" class="btn btn-primary" />
     <input type="hidden" name="task" value="events.check" />
 </form>
 
