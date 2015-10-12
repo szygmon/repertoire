@@ -34,6 +34,7 @@ if (!empty($this->sidebar)) :
                     <tr>
                         <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
                         <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
+                    </tr>
                 </thead>
                 <tbody>
                     <?php

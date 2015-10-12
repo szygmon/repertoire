@@ -12,7 +12,7 @@ abstract class RepertoireHelper {
                 JText::_('COM_REPERTOIRE_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_repertoire', $vName == 'categories'
         );
         JHtmlSidebar::addEntry(
-                JText::_('COM_REPERTOIRE_PARTY'), 'index.php?option=com_repertoire&view=party', $vName == 'party');
+                JText::_('COM_REPERTOIRE_EVENTS'), 'index.php?option=com_repertoire&view=events', $vName == 'events');
         JHtmlSidebar::addEntry(
                 JText::_('COM_REPERTOIRE_IMPORT'), 'index.php?option=com_repertoire&view=import', $vName == 'import');
 
