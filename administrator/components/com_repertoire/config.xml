@@ -34,6 +34,37 @@
             description="COM_REPERTOIRE_POSITIONS_DESC" 
             filter="integer" 
         />
+        <field
+            name="show_news"
+            type="radio"
+            label="COM_REPERTOIRE_SHOW_NEWS"
+            description="COM_REPERTOIRE_SHOW_NEWS_DESC"
+            class="btn-group btn-group-yesno"
+            default="1"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field 
+            name="news" 
+            type="list" 
+            default="3" 
+            label="COM_REPERTOIRE_NEWS" 
+            description="COM_REPERTOIRE_NEWS_DESC"
+        >
+            <option value="1">COM_REPERTOIRE_NEWS1</option>
+            <option value="2">COM_REPERTOIRE_NEWS2</option>
+            <option value="3">COM_REPERTOIRE_NEWS3</option>
+            <option value="4">COM_REPERTOIRE_NEWS4</option>
+            <option value="5">COM_REPERTOIRE_NEWS5</option>
+            <option value="6">COM_REPERTOIRE_NEWS6</option>
+            <option value="7">COM_REPERTOIRE_NEWS7</option>
+            <option value="8">COM_REPERTOIRE_NEWS8</option>
+            <option value="9">COM_REPERTOIRE_NEWS9</option>
+            <option value="10">COM_REPERTOIRE_NEWS10</option>
+            <option value="11">COM_REPERTOIRE_NEWS11</option>
+            <option value="12">COM_REPERTOIRE_NEWS12</option>
+        </field>
     </fieldset>
     <fieldset
         name="greetings2"
