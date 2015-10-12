@@ -6,15 +6,16 @@ $replink = str_replace(JPATH_SITE, '', JPATH_COMPONENT);
 $document = JFactory::getDocument();
 $document->addStyleSheet('http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css');
 $document->addScript('http://code.jquery.com/jquery-1.10.2.min.js');
-$document->addScript($replink . '/js/jquery.dataTables.js');
+$document->addScript('components/com_repertoire/js/jquery.dataTables.js');
 
 $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 ?>
 
-<table id="repertoire-list" class="table table-bordered table-hover dataTable">
+<table id="repertoire-list"  class="table table-bordered table-hover dataTable">
     <thead>
         <tr>
-            <th <?php echo $span; ?> width="35%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+            <th <?php echo $span; ?> width="1%"></th>
+            <th <?php echo $span; ?> width="34%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
             <th <?php echo $span; ?> width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
             <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
             <?php if ($this->params->get('show_category', 1)): ?>
@@ -39,6 +40,7 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
             $ytlink = 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search);
             ?>
             <tr>
+                <td class="center"><?php echo JHtml::_('grid.id', $i, $row->id); ?></td>
                 <td>
                     <?php if ($this->params->get('show_news', 1) && date("Y-m-d", strtotime("-" . $this->params->get('news', 3) . " months")) < $row->date): ?>
                         <img src="<?php echo $replink; ?>/images/new.png" />
@@ -72,13 +74,18 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 </table>
 
 <script type="text/javascript">
-    $('#repertoire-list').dataTable({
+    var table = $('#repertoire-list').dataTable({
         "bPaginate": true,
         "bLengthChange": true,
         "bFilter": true,
         "bSort": true,
         "bInfo": true,
         "bAutoWidth": false,
+        "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0] // wyłączenie sortowania dla tych kolumn
+            }],
         "iDisplayLength": <?php echo $this->params->get('positions', 100); ?>
     });
+    table.fnSort([[1, 'asc']]); // sortowanie wg tytułu
 </script>

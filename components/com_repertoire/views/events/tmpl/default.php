@@ -14,12 +14,12 @@ $document->addScript('/media/system/js/calendar-setup.js');
         <div class="span6">
             <div class="control-group">
                 <div class="control-label">
-                    <label id="jform_date-lbl" for="jform_date" class="hasTooltip required" title="" data-original-title="<strong>Data</strong><br />COM_REPERTOIRE__EVENT_DATE_DESC">
-                        Data<span class="star">&nbsp;*</span></label>
+                    <label id="jform_date-lbl" for="date" class="required" title="">
+                        <?php echo JText::_('JDATE'); ?></label>
                 </div>
                 <div class="controls">
                     <div class="input-append">
-                        <input type="text" title="" name="date" id="jform_date" value="2015-10-12" maxlength="45" class="required hasTooltip" required="" aria-required="true" data-original-title="Poniedziałek, 12 październik 2015">
+                        <input type="text" title="" name="date" id="jform_date" value="<?php echo date('Y-m-d'); ?>" maxlength="45" class="required" aria-required="true">
                         <button type="button" class="btn" id="jform_date_img"><span class="icon-calendar"></span></button>
                     </div>
                 </div>
@@ -28,21 +28,18 @@ $document->addScript('/media/system/js/calendar-setup.js');
         <div class="span6">
             <div class="control-group">
                 <div class="control-label">
-                    <label id="jform_pass-lbl" for="jform_pass" class="hasTooltip" title="" data-original-title="<strong>Hasło</strong><br />COM_REPERTOIRE_EVENT_PASS_DESC">
-                        Hasło</label>
+                    <label id="jform_pass-lbl" for="pass" title="">
+                        <?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
                 </div>
                 <div class="controls">
-                    <input type="text" name="pass" id="jform_pass" value="" class="inputbox" size="50">
+                    <input type="text" name="pass" id="pass" value="" class="inputbox" size="50">
                 </div>
             </div>
         </div>
     </div>
 
 
-
-
-
-    <input type="submit" name="step2" value="Dalej" />
+    <input type="submit" name="step2" value="<?php echo JText::_('COM_REPERTOIRE_NEXT'); ?>" />
     <input type="hidden" name="task" value="events.check" />
 </form>
 

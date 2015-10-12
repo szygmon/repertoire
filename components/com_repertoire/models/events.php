@@ -24,7 +24,23 @@ class RepertoireModelEvents extends JModelItem {
         $db = JFactory::getDbo();
         // Retrieve the shout
         $query = $db->getQuery(true)
-                ->select('id, date, name')
+                ->select('id')
+                ->from($db->quoteName('#__repertoire_events'))
+                ->where('date = "'.$date.'" AND (pass = "'.$pass.'" OR pass = "NULL")');
+        // Prepare the query
+        $db->setQuery($query);
+        // Load the row.
+        $result = $db->loadObject();
+        
+        return $result->id;
+    }
+    
+    function getEvent($date, $pass) {
+        // Obtain a database connection
+        $db = JFactory::getDbo();
+        // Retrieve the shout
+        $query = $db->getQuery(true)
+                ->select('id')
                 ->from($db->quoteName('#__repertoire_events'))
                 ->where('date = "'.$date.'" AND (pass = "'.$pass.'" OR pass = "NULL")');
         // Prepare the query
