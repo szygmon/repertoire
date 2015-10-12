@@ -14,5 +14,10 @@ class RepertoireControllerEvent extends JControllerForm {
         parent::save($key, $urlVar);
 
     }
+    
+    public function toprint() {
+        $id = JRequest::getVar('id');
+        $this->setRedirect('index.php?option=com_repertoire&view=events&layout=list&tmpl=component&print=1&id='.$id);
+    }
 
 }
