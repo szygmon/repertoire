@@ -10,7 +10,15 @@ $document->addScript('components/com_repertoire/js/jquery.dataTables.js');
 
 $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 ?>
-
+<div class="row-fluid">
+    <div class="span4"><h2><?php echo JText::_('COM_REPERTOIRE_EVENT_NAME'); ?></h2></div>
+    <div class="span8"><h2><?php echo $this->event->name; ?></h2></div>
+</div>
+<div class="row-fluid">
+    <div class="span4"><h3><?php echo JText::_('COM_REPERTOIRE_EVENT_DATE'); ?></h3></div>
+    <div class="span8"><h3><?php echo $this->event->date; ?></h3></div>
+</div>
+<div class="row-fluid center"><h4>Dostępny repertuar</h4></div>
 <form action="<?php echo JRoute::_('index.php?option=com_repertoire&view=events'); ?>" method="post" name="Form">
     <table id="repertoire-list"  class="table table-bordered table-hover dataTable">
         <thead>
