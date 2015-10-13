@@ -11,15 +11,12 @@ class RepertoireControllerSong extends JControllerForm {
     }
 
     public function save($key = null, $urlVar = null) {
-        $input = JFactory::getApplication()->input;
-        $file = $input->files->get('jform');
         $songid = JRequest::getVar('id');
-        
         $deletefile = JFactory::getApplication()->input->get('jform', array(), 'array')['removemp3'];
         
         // wywołanie rodzica
         parent::save($key, $urlVar);
         
-        $this->getModel()->saveSong($songid, $file, $deletefile);
+        $this->getModel()->saveSong($songid, $deletefile);
     }
 }

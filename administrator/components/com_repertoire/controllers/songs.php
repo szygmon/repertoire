@@ -28,28 +28,9 @@ class RepertoireControllerSongs extends JControllerAdmin {
     }
 
     public function delete() {
-        // Neccesary libraries and variables
-        jimport('joomla.filesystem.folder');
-        jimport('joomla.filesystem.file');
-
-        $folder = JPATH_SITE . "/" . "images" . "/" . "demomp3";
-
         $id = JRequest::getVar('cid');
-        $idq = implode($id, ',');
-        $db = JFactory::getDBO();
-        $query = $db->getQuery(true)
-                ->select('demo_audio')
-                ->from($db->quoteName('#__repertoire'))
-                ->where('id IN (' . $idq . ') AND demo_audio != ""');
-        // Prepare the query
-        $db->setQuery($query);
-        // Load the row.
-        $result = $db->loadRowList();
-
-        foreach ($result as $row) {
-            // usuwanie pliku z serwera
-            JFile::delete($folder . "/" . $row[0]);
-        }
+        
+        $this->getModel()->deleteSongs($id);
 
         parent::delete();
     }
