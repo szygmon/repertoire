@@ -3,8 +3,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class RepertoireModelEvents extends JModelList {
-
+class RepertoireModelEvents extends JModelLegacy {
     function getEvents() {
         // Obtain a database connection
         $db = JFactory::getDbo();
@@ -31,7 +30,7 @@ class RepertoireModelEvents extends JModelList {
                 ->leftJoin('#__repertoire_songs_events on id=#__repertoire_songs_events.songid')
                 ->leftJoin('#__repertoire_events on #__repertoire_songs_events.eventid=#__repertoire_events.id')
                 ->from($db->quoteName('#__repertoire'))
-                ->where('#__repertoire_songs_events.eventid='.$event)
+                ->where('#__repertoire_songs_events.eventid=' . $event)
                 ->group('id')
                 ->order('count DESC');
         // Prepare the query
@@ -40,6 +39,19 @@ class RepertoireModelEvents extends JModelList {
         $result = $db->loadObjectList();
 
         return $result;
+    }
+
+    public function deleteEvents($id) {
+        $idq = implode($id, ',');
+        $db = JFactory::getDBO();
+
+        // tabela repertoire_songs_events
+        $query = $db->getQuery(true)
+                ->delete($db->quoteName('#__repertoire_songs_events'))
+                ->where('eventid IN (' . $idq . ')');
+        
+        $db->setQuery($query);
+        $db->execute();
     }
 
 }
