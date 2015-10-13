@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <fieldset
-        name="greetings"
+        name="repertoire"
         label="COM_REPERTOIRE_LIST_CONFIG_LABEL"
     >
         <field
@@ -67,7 +67,7 @@
         </field>
     </fieldset>
     <fieldset
-        name="greetings2"
+        name="repertoire2"
         label="COM_REPERTOIRE_PRE_TEXT"
     >
         <field 
@@ -80,7 +80,7 @@
         />
     </fieldset>
     <fieldset
-        name="greetings3"
+        name="repertoire3"
         label="COM_REPERTOIRE_POST_TEXT"
     >
         <field 

@@ -1,5 +1,5 @@
 <?php
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted Access');
 
 $document = JFactory::getDocument();

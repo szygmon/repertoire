@@ -1,6 +1,5 @@
 <?php
-
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireViewSong extends JViewLegacy {
@@ -8,7 +7,6 @@ class RepertoireViewSong extends JViewLegacy {
     protected $form = null;
 
     function display($tpl = null) {
-        // Get the Data
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
@@ -21,7 +19,7 @@ class RepertoireViewSong extends JViewLegacy {
     protected function addToolbar() {
         $input = JFactory::getApplication()->input;
 
-        // Hide Joomla Administrator Main menu
+        // Blokowanie menu
         $input->set('hidemainmenu', true);
 
         $isNew = ($this->item->id == 0);
@@ -31,16 +29,12 @@ class RepertoireViewSong extends JViewLegacy {
         } else {
             $title = JText::_('COM_REPERTOIRE_EDIT');
         }
-        // tytuł strony
+        // Tytuł strony
         JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . $title, 'stack article');
 
-        // przyciski
-        //JToolbarHelper::apply('song.applay'); ///nie działa???
+        // Przyciski
         JToolBarHelper::save('song.save');
         JToolbarHelper::save2new('song.save2new');
         JToolBarHelper::cancel('song.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
     }
-
 }
-
-?> 

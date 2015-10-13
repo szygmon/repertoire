@@ -1,13 +1,7 @@
 <?php
-
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
-/**
- * HelloWorld Model
- *
- * @since  0.0.1
- */
 class RepertoireModelSong extends JModelAdmin {
 
     /**
@@ -74,25 +68,26 @@ class RepertoireModelSong extends JModelAdmin {
     /*
      * Metoda do zapisu piosenki w repertuarze
      * 
-     * @param   int     $songid     ID utworu (0 dla nowo dodawanego
-     * @param   boolean $deletefile 1 - dla pozostawienia pliku, 0 - dla usunięcia pliku z serwera
+     * @param   int     $songid     ID utworu (0 dla nowo dodawanego)
+     * @param   boolean $deletefile UWAGA! 1 - dla pozostawienia pliku, 0 - dla usunięcia pliku z serwera
      * 
      */
+
     public function saveSong($songid, $deletefile = 1) {
-        // Neccesary libraries and variables
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.file');
 
         $jform = JFactory::getApplication()->input->files->get('jform');
-        
-        // nazwa pliku - małe znaki, usuwanie pl znaków i spacji, bezpieczna nazwa
+
+        // Nazwa pliku - małe znaki, usuwanie polskich znaków i spacji, bezpieczna nazwa
         $filename = strtolower($jform['mp3']['name']);
         $filename = str_replace(
                 array('ę', 'ó', 'ą', 'ś', 'ł', 'ż', 'ź', 'ć', 'ń', ' '), array('e', 'o', 'a', 's', 'l', 'z', 'z', 'c', 'n', ''), $filename);
         $filename = JFile::makeSafe($filename);
+
         $folder = JPATH_SITE . "/" . "images" . "/" . "demomp3";
 
-        // Create the folder if not exists in images folder
+        // Tworzenie katalogu jeśli nie istnieje
         if (!JFolder::exists($folder)) {
             JFolder::create($folder, 0777);
         }
@@ -100,43 +95,37 @@ class RepertoireModelSong extends JModelAdmin {
         $src = $jform['mp3']['tmp_name'];
         $dest = $folder . "/" . $filename;
 
-        // Obtain a database connection
         $db = JFactory::getDbo();
 
+        // Jeśli nie ma błędu przesyłania
         if ($jform['mp3']['error'] == 0) {
             JFile::upload($src, $dest);
 
-            if ($songid != 0) {
-                $query = $db->getQuery(true)
-                        ->update($db->quoteName('#__repertoire'))
-                        ->set('demo_audio = "' . $filename . '"')
-                        ->where('id=' . $songid);
-
-                $db->setQuery($query);
-                $db->execute();
-            } else {
-                // szukanie ostatnio dodanego id utworu
+            // Jeśli utwór jest nowy - szukanie ostatnio dodanego id utworu
+            if ($songid == 0) {
                 $query = $db->getQuery(true)
                         ->select('id')
                         ->from($db->quoteName('#__repertoire'))
                         ->order('id DESC')
                         ->setLimit(1);
 
-                // Prepare the query
                 $db->setQuery($query);
-                // Load the row.
                 $result = $db->loadRow();
 
-                $query = $db->getQuery(true)
-                        ->update($db->quoteName('#__repertoire'))
-                        ->set('demo_audio = "' . $filename . '"')
-                        ->where('id=' . $result[0]);
-
-                $db->setQuery($query);
-                $db->execute();
+                $songid = $result[0];
             }
+            
+            // Dodanie ścieżki do MP3 na serwerze
+            $query = $db->getQuery(true)
+                    ->update($db->quoteName('#__repertoire'))
+                    ->set('demo_audio = "' . $filename . '"')
+                    ->where('id=' . $songid);
+
+            $db->setQuery($query);
+            $db->execute();
         }
-        // usuwanie mp3 - uwaga! dla 0 usuwamy! trik zastosowany dla kolorowania przycisku Usuń (Tak) na czerwono w Joomla
+        
+        // Usuwanie mp3 - UWAGA! Dla 0 usuwamy! Trik zastosowany dla kolorowania przycisku Usuń (Tak) na czerwono w Joomla
         if ($deletefile == 0) {
             $query = $db->getQuery(true)
                     ->select('demo_audio')
@@ -144,15 +133,13 @@ class RepertoireModelSong extends JModelAdmin {
                     ->where('id=' . $songid)
                     ->setLimit(1);
 
-            // Prepare the query
             $db->setQuery($query);
-            // Load the row.
             $result = $db->loadRow();
 
-            // usuwanie pliku z serwera
+            // Usuwanie pliku z serwera
             JFile::delete($folder . "/" . $result[0]);
 
-            // usuwanie wpisu w BD
+            // Usuwanie wpisu w BD
             $query = $db->getQuery(true)
                     ->update($db->quoteName('#__repertoire'))
                     ->set('demo_audio = ""')
@@ -162,44 +149,42 @@ class RepertoireModelSong extends JModelAdmin {
             $db->execute();
         }
     }
-    
+
     /*
      * Metoda usuwająca pliki usuwanych utworów z bazy danych
      * 
      * @param   array   $id     ID utworów do usunięcia
      */
+
     public function deleteSongs($id) {
-        // Neccesary libraries and variables
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.file');
 
         $folder = JPATH_SITE . "/" . "images" . "/" . "demomp3";
-        
+
         $idq = implode($id, ',');
         $db = JFactory::getDBO();
-        
-        // tabela repertoire
+
+        // Tabela #__repertoire
         $query = $db->getQuery(true)
                 ->select('demo_audio')
                 ->from($db->quoteName('#__repertoire'))
                 ->where('id IN (' . $idq . ') AND demo_audio != ""');
-        // Prepare the query
+        
         $db->setQuery($query);
-        // Load the row.
         $result = $db->loadRowList();
 
+        // Usuwanie plików z serwera
         foreach ($result as $row) {
-            // usuwanie pliku z serwera
             JFile::delete($folder . "/" . $row[0]);
         }
-        
-        // tabela repertoire_songs_events
+
+        // Tabela #__repertoire_songs_events
         $query = $db->getQuery(true)
                 ->delete($db->quoteName('#__repertoire_songs_events'))
                 ->where('songid IN (' . $idq . ')');
-        // Prepare the query
+        
         $db->setQuery($query);
         $db->execute();
     }
-
 }

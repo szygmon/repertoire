@@ -1,5 +1,5 @@
 <?php
-// No direct access
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_repertoire&view=events&layout=edit&id=' . (int) $this->item->id); ?>"

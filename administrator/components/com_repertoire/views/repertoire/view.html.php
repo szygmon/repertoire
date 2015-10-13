@@ -1,5 +1,5 @@
 <?php
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireViewRepertoire extends JViewLegacy {
@@ -19,22 +19,19 @@ class RepertoireViewRepertoire extends JViewLegacy {
         $this->addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 
-        // przypisanie zmiennych dla widoku z modelu
-        $this->rows = $this->get('Repertoire')['rows'];
-        //$this->count = $this->get('Repertoire')['count'];
+        $this->rows = $this->get('Repertoire');
 
         parent::display($tpl);
     }
 
     protected function addToolbar() {
-        // tytuł strony
+        // Tytuł strony
         JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_LIST'), 'stack article');
 
-        // przyciski
+        // Przyciski
         JToolBarHelper::addNew('song.add');
         JToolBarHelper::editList('song.edit');
         JToolBarHelper::deleteList(JText::_('COM_REPERTOIRE_CONFIRM_DELETE'), 'songs.delete');
         JToolbarHelper::preferences('com_repertoire');
     }
-
 }

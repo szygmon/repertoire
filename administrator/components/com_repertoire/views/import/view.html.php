@@ -1,5 +1,5 @@
 <?php
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireViewImport extends JViewLegacy {
@@ -23,15 +23,14 @@ class RepertoireViewImport extends JViewLegacy {
         $application = JFactory::getApplication();
         $application->enqueueMessage(JText::_('COM_REPERTOIRE_IMPORT_INFO'), 'notice');
         
-        
         parent::display($tpl);
     }
 
     protected function addToolbar() {
-        // tytuł strony
+        // Tytuł strony
         JToolbarHelper::title(JText::_('COM_REPERTOIRE') . ': ' . JText::_('COM_REPERTOIRE_IMPORT'), 'stack article');
 
-        // przyciski
+        // Przyciski
         JToolBarHelper::apply('import.import', JText::_('COM_REPERTOIRE_IMPORT_NOW'));
         JToolbarHelper::preferences('com_repertoire');
     }

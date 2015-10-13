@@ -1,30 +1,40 @@
 <?php
-
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireModelEvents extends JModelLegacy {
+    /*
+     * Metoda pobierająca imprezy z BD
+     * 
+     * @return  array   tablica obiektów tabeli #__repertoire 
+     * i pole songs zawierające ilość utworów dla wydarzenia
+     * z tabeli #__repertoire_songs_events
+     */
     function getEvents() {
-        // Obtain a database connection
         $db = JFactory::getDbo();
-        // Retrieve the shout
         $query = $db->getQuery(true)
                 ->select('#__repertoire_events.*, COUNT(#__repertoire_songs_events.songid) as songs')
                 ->leftJoin('#__repertoire_songs_events on id=#__repertoire_songs_events.eventid')
                 ->from($db->quoteName('#__repertoire_events'))
                 ->group('id');
-        // Prepare the query
+        
         $db->setQuery($query);
-        // Load the row.
         $result = $db->loadObjectList();
 
         return $result;
     }
 
+    /*
+     * Metoda pobierająca utwory dla danej imprezy
+     * 
+     * @param   int     $event      ID wydarzenia
+     * 
+     * @return  array   tablica obiektów tabeli #__repertoire
+     * oraz pole count, zawierające ilość wystąpienia danego utworu - popularność,
+     * name - nazwę wydarzenia i date - datę wydarzenia
+     */
     function getSongs($event) {
-        // Obtain a database connection
         $db = JFactory::getDbo();
-        // Retrieve the shout
         $query = $db->getQuery(true)
                 ->select('#__repertoire.*, COUNT(#__repertoire_songs_events.songid) as count, #__repertoire_events.name, #__repertoire_events.date')
                 ->leftJoin('#__repertoire_songs_events on id=#__repertoire_songs_events.songid')
@@ -33,19 +43,22 @@ class RepertoireModelEvents extends JModelLegacy {
                 ->where('#__repertoire_songs_events.eventid=' . $event)
                 ->group('id')
                 ->order('count DESC');
-        // Prepare the query
+        
         $db->setQuery($query);
-        // Load the row.
         $result = $db->loadObjectList();
 
         return $result;
     }
 
+    /*
+     * Metoda usuwająca utwory, wybrane przez klientów dla usuwanego wydarzenia
+     * 
+     * @param   array   $id     Tablica ID usuwanych imprez
+     */
     public function deleteEvents($id) {
         $idq = implode($id, ',');
         $db = JFactory::getDBO();
 
-        // tabela repertoire_songs_events
         $query = $db->getQuery(true)
                 ->delete($db->quoteName('#__repertoire_songs_events'))
                 ->where('eventid IN (' . $idq . ')');
@@ -53,5 +66,4 @@ class RepertoireModelEvents extends JModelLegacy {
         $db->setQuery($query);
         $db->execute();
     }
-
 }

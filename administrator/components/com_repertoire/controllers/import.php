@@ -1,19 +1,13 @@
 <?php
-
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireControllerImport extends JControllerForm {
-
-    public function __construct($config = array()) {
-        parent::__construct($config);
-        //$this->view_list = 'repertoire'; // przekierowanie po zapisie/edycji...
-    }
-
+    // Import z Excela
     public function import() {
         $result = $this->getModel()->importSongs();
 
-        // przekierowanie z wiadomością
+        // Przekierowanie z odpowiednią wiadomością
         if ($result) {
             $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_IMPORT_SUCCESS'));
         } else {

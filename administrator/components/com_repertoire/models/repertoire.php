@@ -1,9 +1,14 @@
 <?php
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireModelRepertoire extends JModelList {
-
+    /*
+     * Metoda zwracająca listę utworów w repertuarze zespołu
+     * 
+     * @return  array   Tablica obiektów tabeli #__repertoire
+     * oraz pole category zawierającę nazwę kategorii utworu
+     */
     function getRepertoire() {
         // Obtain a database connection
         $db = JFactory::getDbo();
@@ -17,7 +22,6 @@ class RepertoireModelRepertoire extends JModelList {
         // Load the row.
         $result = $db->loadObjectList();
 
-        return array('rows' => $result, 'count' => count($result));
+        return $result;
     }
-
 }

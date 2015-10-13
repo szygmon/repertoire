@@ -1,12 +1,11 @@
 <?php
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted Access');
 
 $document = JFactory::getDocument();
 $document->addStyleSheet('http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css');
 $document->addScript('http://code.jquery.com/jquery-1.10.2.min.js');
 $document->addScript('../components/com_repertoire/js/jquery.dataTables.js');
-
 
 if (!empty($this->sidebar)) :
     ?>

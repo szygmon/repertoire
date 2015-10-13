@@ -1,6 +1,6 @@
 <?php
-
-defined('_JEXEC') or die;
+// Brak bezpośredniego dostępu do pliku
+defined('_JEXEC') or die('Restricted access');
 
 class RepertoireController extends JControllerLegacy {
 
