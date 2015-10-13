@@ -1,14 +1,9 @@
 <?php
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireControllerEvents extends JControllerForm {
-
-    public function __construct($config = array()) {
-        parent::__construct($config);
-    }
-
-    // sprawdzanie poprawnego hasła i daty
+    // Sprawdzanie poprawnego hasła i daty
     public function check() {
         $app = JFactory::getApplication();
         $postData = $app->input->post;
@@ -24,14 +19,14 @@ class RepertoireControllerEvents extends JControllerForm {
             $this->setRedirect('index.php?option=com_repertoire&view=events', JText::_('COM_REPERTOIRE_EVENTS_CHECK_ERROR'), 'error');
     }
 
-    // dodawanie utworów do bazy
+    // Dodawanie utworów klienta do BD
     public function add() {
         $songs = JRequest::getVar('cid', array(), '', 'array');
         $event = JRequest::getVar('eventid');
         foreach ($songs as $song) {
             $this->getModel()->addSong($song, $event);
         }
-        // zerowanie sesji po poprawnym dodaniu
+        // Czyszczeie sesji po poprawnym dodaniu
         $session = JFactory::getSession();
         $session->clear('events');
 

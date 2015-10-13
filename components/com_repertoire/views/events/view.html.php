@@ -1,13 +1,10 @@
 <?php
-
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireViewEvents extends JViewLegacy {
 
     function display($tpl = null) {
-
-        // przypisanie zmiennych dla widoku z modelu
         $this->rows = $this->get('Repertoire');
 
         $app = JFactory::getApplication();
@@ -22,5 +19,4 @@ class RepertoireViewEvents extends JViewLegacy {
         
         parent::display($tpl);
     }
-
 }

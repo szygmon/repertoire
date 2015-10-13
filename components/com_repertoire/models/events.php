@@ -1,66 +1,81 @@
 <?php
-
-// No direct access to this file
+// Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireModelEvents extends JModelItem {
-
+    /*
+     * Metoda pobiera repertuar muzyczny zespołu
+     * 
+     * @return  array   Lista obiektów tabeli #__repertoire
+     * oraz pole category zaiwrające nazwę kategorii utworu
+     */
     function getRepertoire() {
-        // Obtain a database connection
         $db = JFactory::getDbo();
-        // Retrieve the shout
+        
         $query = $db->getQuery(true)
                 ->select('#__repertoire.*, #__categories.title as category')
                 ->leftJoin('#__categories on catid=#__categories.id')
                 ->from($db->quoteName('#__repertoire'));
-        // Prepare the query
+        
         $db->setQuery($query);
-        // Load the row.
         $result = $db->loadObjectList();
 
         return $result;
     }
 
-    function check($date, $pass) {
-        // Obtain a database connection
+    /*
+     * Metoda sprawdzająca poprawność formularza dla wyboru wydarzenia przez klienta
+     * 
+     * @param   date    $date   Data wydarzenia w formacie Y-m-d
+     * @param   text    $pass   Hasło dla wydarzenia - opcjonalnie
+     * 
+     * @return  int     ID wydarzenia
+     */
+    function check($date, $pass = '') {
         $db = JFactory::getDbo();
-        // Retrieve the shout
+        
         $query = $db->getQuery(true)
                 ->select('id')
                 ->from($db->quoteName('#__repertoire_events'))
                 ->where('date = "' . $date . '" AND (pass = "' . $pass . '" OR pass = "NULL")');
-        // Prepare the query
+        
         $db->setQuery($query);
-        // Load the row.
         $result = $db->loadObject();
 
         return $result->id;
     }
 
+    /*
+     * Metoda pobierająca dane na temat wydarzenia
+     * 
+     * @return  Object  Obiekt zawierający pola tabeli #__repertoire_events dla wybranego wydarzenia
+     */
     function getEvent() {
         $id = JRequest::getVar('id');
-        // Obtain a database connection
+        
         $db = JFactory::getDbo();
-        // Retrieve the shout
         $query = $db->getQuery(true)
                 ->select('*')
                 ->from($db->quoteName('#__repertoire_events'))
                 ->where('id = ' . $id);
-        // Prepare the query
+        
         $db->setQuery($query);
-        // Load the row.
         $result = $db->loadObject();
 
         return $result;
     }
 
+    /*
+     * Metoda dodająca utwór do tabeli #__repertoire_songs_events w BD
+     * 
+     * @param   int     $songid     ID utworu
+     * @param   int     $eventid    ID wydarzenia
+     */
     function addSong($songid, $eventid) {
         $row = new stdClass();
         $row->songid = $songid;
         $row->eventid = $eventid;
 
-        // Insert the object into the user profile table.
         $result = JFactory::getDbo()->insertObject('#__repertoire_songs_events', $row);
     }
-
 }
