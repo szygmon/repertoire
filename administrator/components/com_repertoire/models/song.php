@@ -177,6 +177,8 @@ class RepertoireModelSong extends JModelAdmin {
         
         $idq = implode($id, ',');
         $db = JFactory::getDBO();
+        
+        // tabela repertoire
         $query = $db->getQuery(true)
                 ->select('demo_audio')
                 ->from($db->quoteName('#__repertoire'))
@@ -190,6 +192,14 @@ class RepertoireModelSong extends JModelAdmin {
             // usuwanie pliku z serwera
             JFile::delete($folder . "/" . $row[0]);
         }
+        
+        // tabela repertoire_songs_events
+        $query = $db->getQuery(true)
+                ->delete($db->quoteName('#__repertoire_songs_events'))
+                ->where('songid IN (' . $idq . ')');
+        // Prepare the query
+        $db->setQuery($query);
+        $db->execute();
     }
 
 }

@@ -11,6 +11,7 @@ class RepertoireModelImport extends JModelLegacy {
 
     /*
      * Metoda do importu utworów z pliku Excel 97-2003
+     * @return  true jeśli success, false jeśli error
      */
     public function importSongs() {
         // Neccesary libraries and variables
