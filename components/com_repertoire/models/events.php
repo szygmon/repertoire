@@ -37,7 +37,8 @@ class RepertoireModelEvents extends JModelItem {
         return $result->id;
     }
 
-    function getEvent($id) {
+    function getEvent() {
+        $id = JRequest::getVar('id');
         // Obtain a database connection
         $db = JFactory::getDbo();
         // Retrieve the shout
