@@ -6,7 +6,7 @@ class RepertoireViewRepertoire extends JViewLegacy {
 
     function display($tpl = null) {
         $this->rows = $this->get('Repertoire');
-
+$this->item  = $this->get('Item');
         $app = JFactory::getApplication();
         $this->params = $app->getParams();
 
