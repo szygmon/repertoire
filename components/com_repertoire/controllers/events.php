@@ -33,7 +33,7 @@ class RepertoireControllerEvents extends JControllerForm {
         }
         // zerowanie sesji po poprawnym dodaniu
         $session = JFactory::getSession();
-        $session->set('events', 0);
+        $session->clear('events');
 
         $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_EVENTS_ADD_SUCCESS'));
     }

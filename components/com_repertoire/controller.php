@@ -9,8 +9,9 @@ class RepertoireController extends JControllerLegacy {
         if ($this->input->get('layout', 'default') == 'mylist') {
             $getSession = JFactory::getSession();
             $session = $getSession->get('events');
+            //var_dump(JFactory::getSession()->getExpire()); die();
             if (empty($session) || $session == 0 || $session != JRequest::getVar('id')) {
-                $getSession->set('events', 0);
+                $getSession->clear('events');
                 $this->setRedirect('index.php?option=com_repertoire&view=events', JText::_('COM_REPERTOIRE_EVENTS_SESSION_ERROR'), 'error');
             }
         }
