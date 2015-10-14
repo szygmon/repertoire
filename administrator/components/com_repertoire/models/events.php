@@ -38,9 +38,10 @@ class RepertoireModelEvents extends JModelLegacy {
     function getSongs($event) {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
-                ->select('#__repertoire.*, COUNT(#__repertoire_songs_events.songid) as count, #__repertoire_events.name, #__repertoire_events.date')
+                ->select('#__repertoire.*, COUNT(#__repertoire_songs_events.songid) as count, #__repertoire_events.name, #__repertoire_events.date, #__categories.title as category')
                 ->leftJoin('#__repertoire_songs_events on id=#__repertoire_songs_events.songid')
                 ->leftJoin('#__repertoire_events on #__repertoire_songs_events.eventid=#__repertoire_events.id')
+                ->leftJoin('#__categories on catid=#__categories.id')
                 ->from($db->quoteName('#__repertoire'))
                 ->where('#__repertoire_songs_events.eventid=' . $event)
                 ->group('id')
