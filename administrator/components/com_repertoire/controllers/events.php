@@ -26,5 +26,10 @@ class RepertoireControllerEvents extends JControllerAdmin {
 
         parent::delete();
     }
-
+    
+    // Obsługa usuwania przestarzałych wydarzeń z BD
+    public function deleteold() {
+        $this->getModel('Events')->deleteOldEvents();
+        $this->setRedirect('index.php?option=com_repertoire&view=events', JText::_('COM_REPERTOIRE_DELETED_OLD_SUCCESS'));
+    }
 }

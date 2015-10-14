@@ -70,4 +70,10 @@ if (!empty($this->sidebar)) :
             }]
     });
     table.fnSort([[1, 'asc']]); // sortowanie wg daty
+    $('#toolbar button:eq(3)').attr('onClick', null).off('click');
+    $('#toolbar button:eq(3)').click(function(){
+        if (confirm('<?php echo JText::_('COM_REPERTOIRE_CONFIRM_DELETE_OLD'); ?>')){
+            Joomla.submitbutton('events.deleteold');
+        }
+    })
 </script>

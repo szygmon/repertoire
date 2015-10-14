@@ -10,6 +10,7 @@ class RepertoireModelEvents extends JModelLegacy {
      * i pole songs zawierające ilość utworów dla wydarzenia
      * z tabeli #__repertoire_songs_events
      */
+
     function getEvents() {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
@@ -17,7 +18,7 @@ class RepertoireModelEvents extends JModelLegacy {
                 ->leftJoin('#__repertoire_songs_events on id=#__repertoire_songs_events.eventid')
                 ->from($db->quoteName('#__repertoire_events'))
                 ->group('id');
-        
+
         $db->setQuery($query);
         $result = $db->loadObjectList();
 
@@ -33,6 +34,7 @@ class RepertoireModelEvents extends JModelLegacy {
      * oraz pole count, zawierające ilość wystąpienia danego utworu - popularność,
      * name - nazwę wydarzenia i date - datę wydarzenia
      */
+
     function getSongs($event) {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
@@ -43,7 +45,7 @@ class RepertoireModelEvents extends JModelLegacy {
                 ->where('#__repertoire_songs_events.eventid=' . $event)
                 ->group('id')
                 ->order('count DESC');
-        
+
         $db->setQuery($query);
         $result = $db->loadObjectList();
 
@@ -55,6 +57,7 @@ class RepertoireModelEvents extends JModelLegacy {
      * 
      * @param   array   $id     Tablica ID usuwanych imprez
      */
+
     public function deleteEvents($id) {
         $idq = implode($id, ',');
         $db = JFactory::getDBO();
@@ -62,7 +65,48 @@ class RepertoireModelEvents extends JModelLegacy {
         $query = $db->getQuery(true)
                 ->delete($db->quoteName('#__repertoire_songs_events'))
                 ->where('eventid IN (' . $idq . ')');
+
+        $db->setQuery($query);
+        $db->execute();
+    }
+
+    /*
+     * Metoda usuwająca z BD wydarzenia które już minęły i wszystkie powiązane wpisy
+     */
+
+    public function deleteOldEvents() {
+        $db = JFactory::getDBO();
+
+        // Wyszukiwanie starych wydarzeń
+        $query = $db->getQuery(true)
+                ->select('id')
+                ->from($db->quoteName('#__repertoire_events'))
+                ->where('date < "' . date('Y-m-d') . '"');
+        $db->setQuery($query);
+        $result = $db->loadObjectList();
+
+        $array = array();
+        foreach ($result as $event) {
+            $array[] = $event->id;
+        }
+
+        if ($array[0]) {
+            $idq = implode($array, ',');
+
+            // Usuwanie piosenek dla starych wydarzen
+            $query = $db->getQuery(true)
+                    ->delete($db->quoteName('#__repertoire_songs_events'))
+                    ->where('eventid IN (' . $idq . ')');
+
+            $db->setQuery($query);
+            $db->execute();
+        }
         
+        // Usuwanie wydarzeń
+        $query = $db->getQuery(true)
+                ->delete($db->quoteName('#__repertoire_events'))
+                ->where('date < "' . date('Y-m-d') . '"');
+
         $db->setQuery($query);
         $db->execute();
     }
