@@ -34,6 +34,14 @@ class RepertoireModelImport extends JModelLegacy {
 
         // Jeśli nie ma błędu przesłania pliku
         if ($jform['excel']['error'] == 0) {
+            // Pobieranie kategorii
+            $qc = $db->getQuery(true)
+                    ->select('id, title')
+                    ->from($db->quoteName('#__categories'))
+                    ->where('extension="com_repertoire"');
+            $db->setQuery($qc);
+            $categories = $db->loadObjectList();
+                    
             JFile::upload($src, $dest);
 
             $data = new Spreadsheet_Excel_Reader($dest);
@@ -46,6 +54,13 @@ class RepertoireModelImport extends JModelLegacy {
                     $song->title = $data->sheets[0][cells][$j][1];
                     $song->artist = $data->sheets[0][cells][$j][2];
                     $song->language = $data->sheets[0][cells][$j][3];
+                    foreach ($categories as $cat) {
+                        if ($data->sheets[0][cells][$j][4] == $cat->title) {
+                            $song->catid = $cat->id;
+                            break;
+                        }
+                    }
+                    $song->demo_video = $data->sheets[0][cells][$j][5];
 
                     $result = JFactory::getDbo()->insertObject('#__repertoire', $song);
                 }

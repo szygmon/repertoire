@@ -15,8 +15,7 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
     <div class="page-header">
         <h1> <?php echo $this->escape($this->params->get('page_title')); ?> </h1>
     </div>
-<?php
-endif;
+<?php endif;
 if ($this->params->get('pre_text', NULL))
     echo $this->params->get('pre_text');
 ?>
@@ -25,20 +24,22 @@ if ($this->params->get('pre_text', NULL))
         <tr>
             <th <?php echo $span; ?> width="35%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
             <th <?php echo $span; ?> width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
-            <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-            <?php if ($this->params->get('show_category', 1)): ?>
+            <?php if ($this->params->get('show_language', 1)): ?>
+                <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+            <?php endif; 
+            if ($this->params->get('show_category', 1)): ?>
                 <th <?php echo $span; ?> width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
-            <?php endif; ?>
-            <?php if ($this->params->get('show_demo', 1)): ?>
+            <?php endif; 
+            if ($this->params->get('show_demo', 1)): ?>
                 <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
-        <?php endif; ?>
+            <?php endif; ?>
         </tr>
-<?php if ($this->params->get('show_demo', 1)): ?>
+        <?php if ($this->params->get('show_demo', 1)): ?>
             <tr>
                 <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
                 <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
             </tr>
-<?php endif; ?>
+        <?php endif; ?>
     </thead>
     <tbody>
         <?php
@@ -51,32 +52,34 @@ if ($this->params->get('pre_text', NULL))
                 <td>
                     <?php if ($this->params->get('show_news', 1) && date("Y-m-d", strtotime("-" . $this->params->get('news', 3) . " months")) < $row->date): ?>
                         <img src="<?php echo $replink; ?>/images/new.png" />
-    <?php endif; ?>
+                    <?php endif; ?>
                     <a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a>
                 </td>
                 <td><?php echo $row->artist; ?></td>
-                <td><?php echo $row->language; ?></td>
-                <?php if ($this->params->get('show_category', 1)): ?>
+                <?php if ($this->params->get('show_language', 1)): ?>
+                    <td><?php echo $row->language; ?></td>
+                <?php endif; 
+                if ($this->params->get('show_category', 1)): ?>
                     <td><?php echo $row->category; ?></td>
-                <?php endif; ?>
-                    <?php if ($this->params->get('show_demo', 1)): ?>
+                <?php endif; 
+                if ($this->params->get('show_demo', 1)): ?>
                     <td>
-        <?php if ($row->demo_audio): ?>
+                        <?php if ($row->demo_audio): ?>
                             <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
                                 <param name="wmode" value="transparent">
                                 <param name="movie" value="plugins/content/josdewplayer/dewplayer.swf">
                                 <param name="flashvars" value="mp3=images/demomp3/<?php echo $row->demo_audio; ?>&amp;autostart=0&amp;autoreplay=0&amp;showtime=1">
                             </object>
-        <?php endif ?>
+                        <?php endif ?>
                     </td>
                     <td class="center" style="padding: 7px;">
                         <?php if ($row->demo_video): ?>
                             <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="<?php echo $replink; ?>/images/yt.png" /></a>
-                    <?php endif ?>
+                        <?php endif ?>
                     </td>
-            <?php endif; ?>
+                <?php endif; ?>
             </tr>
-<?php endforeach; ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
 

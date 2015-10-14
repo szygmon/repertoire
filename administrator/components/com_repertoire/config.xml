@@ -5,6 +5,17 @@
         label="COM_REPERTOIRE_LIST_CONFIG_LABEL"
     >
         <field
+            name="show_language"
+            type="radio"
+            label="COM_REPERTOIRE_SHOW_LANGUAGE"
+            description="COM_REPERTOIRE_SHOW_LANGUAGE_DESC"
+            class="btn-group btn-group-yesno"
+            default="1"
+        >
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field
             name="show_category"
             type="radio"
             label="COM_REPERTOIRE_SHOW_CATEGORY"
