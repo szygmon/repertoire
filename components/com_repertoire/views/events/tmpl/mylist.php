@@ -26,11 +26,13 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
                 <th <?php echo $span; ?> width="1%"></th>
                 <th <?php echo $span; ?> width="34%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
                 <th <?php echo $span; ?> width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
-                <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-                <?php if ($this->params->get('show_category', 1)): ?>
+                <?php if ($this->params->get('show_language', 1)): ?>
+                    <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+                <?php endif;
+                if ($this->params->get('show_category', 1)): ?>
                     <th <?php echo $span; ?> width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
-                <?php endif; ?>
-                <?php if ($this->params->get('show_demo', 1)): ?>
+                <?php endif;
+                if ($this->params->get('show_demo', 1)): ?>
                     <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
                 <?php endif; ?>
             </tr>
@@ -57,11 +59,13 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
                         <a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a>
                     </td>
                     <td><?php echo $row->artist; ?></td>
-                    <td><?php echo $row->language; ?></td>
-                    <?php if ($this->params->get('show_category', 1)): ?>
+                    <?php if ($this->params->get('show_language', 1)): ?>
+                        <td><?php echo $row->language; ?></td>
+                    <?php endif;
+                    if ($this->params->get('show_category', 1)): ?>
                         <td><?php echo $row->category; ?></td>
-                    <?php endif; ?>
-                    <?php if ($this->params->get('show_demo', 1)): ?>
+                    <?php endif;
+                    if ($this->params->get('show_demo', 1)): ?>
                         <td>
                             <?php if ($row->demo_audio): ?>
                                 <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
