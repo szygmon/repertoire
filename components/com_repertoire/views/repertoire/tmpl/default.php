@@ -13,7 +13,7 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
     <div class="page-header">
-        <h1> <?php echo $this->escape($this->params->get('page_title')); ?> </h1>
+        <h2> <?php echo $this->escape($this->params->get('page_title')); ?> </h2>
     </div>
 <?php endif;
 if ($this->params->get('pre_text', NULL))
