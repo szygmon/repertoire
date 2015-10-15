@@ -6,6 +6,7 @@ $document = JFactory::getDocument();
 $document->addStyleSheet('/media/system/css/calendar-jos.css');
 $document->addScript('/media/system/js/calendar.js');
 $document->addScript('/media/system/js/calendar-setup.js');
+JHtml::_('jquery.framework');
 
 if ($this->params->get('show_page_heading', 1)) : ?>
     <h2> <?php echo $this->escape($this->params->get('page_title')); ?> </h2>
@@ -61,7 +62,7 @@ if ($this->params->get('show_page_heading', 1)) : ?>
             // Trigger for the calendar (button ID)
             button: "jform_date_img",
             // Alignment (defaults to "Bl")
-            align: "Tl",
+            align: "Bl",
             singleClick: true,
             firstDay: 1
         });
