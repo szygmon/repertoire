@@ -27,6 +27,10 @@ class RepertoireViewEvents extends JViewLegacy {
             $this->rows = $this->get('Events');
         }
 
+        // Info o wymaganiach pliku
+        $application = JFactory::getApplication();
+        $application->enqueueMessage(JText::_('COM_REPERTOIRE_EVENTS_INFO'), 'notice');
+        
         parent::display($tpl);
     }
 
