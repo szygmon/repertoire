@@ -28,11 +28,15 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
                 <th <?php echo $span; ?> width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
                 <?php if ($this->params->get('show_language', 1)): ?>
                     <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-                <?php endif;
-                if ($this->params->get('show_category', 1)): ?>
+                    <?php
+                endif;
+                if ($this->params->get('show_category', 1)):
+                    ?>
                     <th <?php echo $span; ?> width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
-                <?php endif;
-                if ($this->params->get('show_demo', 1)): ?>
+                    <?php
+                endif;
+                if ($this->params->get('show_demo', 1)):
+                    ?>
                     <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
                 <?php endif; ?>
             </tr>
@@ -61,11 +65,15 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
                     <td><?php echo $row->artist; ?></td>
                     <?php if ($this->params->get('show_language', 1)): ?>
                         <td><?php echo $row->language; ?></td>
-                    <?php endif;
-                    if ($this->params->get('show_category', 1)): ?>
+                        <?php
+                    endif;
+                    if ($this->params->get('show_category', 1)):
+                        ?>
                         <td><?php echo $row->category; ?></td>
-                    <?php endif;
-                    if ($this->params->get('show_demo', 1)): ?>
+                        <?php
+                    endif;
+                    if ($this->params->get('show_demo', 1)):
+                        ?>
                         <td>
                             <?php if ($row->demo_audio): ?>
                                 <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
@@ -85,14 +93,14 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
             <?php endforeach; ?>
         </tbody>
     </table>
-    <input type="submit" name="step3" value="<?php echo JText::_('COM_REPERTOIRE_NEXT'); ?>" class="btn btn-primary" />
+    <input type="submit" name="save" id="send_repertoire" value="<?php echo JText::_('COM_REPERTOIRE_SEND_REPERTOIRE'); ?>" class="btn btn-primary" />
     <input type="hidden" name="eventid" value="<?php echo JRequest::getVar('id'); ?>" />
     <input type="hidden" name="task" value="events.add" />
 </form>
 <script type="text/javascript">
     var table = $('#repertoire-list').dataTable({
-        "bPaginate": true,
-        "bLengthChange": true,
+        "bPaginate": false,
+        "bLengthChange": false,
         "bFilter": true,
         "bSort": true,
         "bInfo": true,
@@ -100,8 +108,12 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
         "aoColumnDefs": [{
                 'bSortable': false,
                 'aTargets': [0] // wyłączenie sortowania dla tych kolumn
-            }],
-        "iDisplayLength": <?php echo $this->params->get('positions', 100); ?>
+            }]
     });
     table.fnSort([[1, 'asc']]); // sortowanie wg tytułu
+    
+    // reset szukajki przy wysyłaniu - zapobiega błędom
+    $('#send_repertoire').click(function () {
+        table.fnFilter('');
+    });
 </script>
