@@ -1,8 +1,10 @@
 <?php
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireControllerEvents extends JControllerForm {
+
     // Sprawdzanie poprawnego hasła i daty
     public function check() {
         $app = JFactory::getApplication();
@@ -23,13 +25,18 @@ class RepertoireControllerEvents extends JControllerForm {
     public function add() {
         $songs = JRequest::getVar('cid', array(), '', 'array');
         $event = JRequest::getVar('eventid');
+        $info = JFactory::getApplication()->input->get('info', null, 'HTML');
         foreach ($songs as $song) {
             $this->getModel()->addSong($song, $event);
         }
+        if ($info)
+            $this->getModel()->addInfo($event, $info);
+
         // Czyszczeie sesji po poprawnym dodaniu
         $session = JFactory::getSession();
         $session->clear('events');
 
         $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_EVENTS_ADD_SUCCESS'));
     }
+
 }

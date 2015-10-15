@@ -19,34 +19,57 @@ if (!empty($this->sidebar)) :
 
         <h2><?php echo $this->rows[0]->date . ': ' . $this->rows[0]->name; ?></h2>
         <form action="<?php echo JRoute::_('index.php?option=com_repertoire&view=events'); ?>" method="post" name="adminForm" id="adminForm">   
-            <table id="repertoire-list" class="table table-bordered table-hover dataTable">
-                <thead>
-                    <tr>
-                        <th width="1%"><?php echo JText::_('COM_REPERTOIRE_COUNT'); ?></th>
-                        <th width="44%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
-                        <th width="30%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
-                        <th width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-                        <th width="20%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($this->rows as $row) :
-                        $link = JRoute::_('index.php?option=com_repertoire&task=song.edit&id=' . $row->id);
-                        ?>
+            <div class="row-fluid">
+                <table id="repertoire-list" class="table table-bordered table-hover dataTable">
+                    <thead>
                         <tr>
-                            <td><?php echo $row->count; ?></td>
-                            <td><?php echo $row->title; ?></td>
-                            <td><?php echo $row->artist; ?></td>
-                            <td><?php echo $row->language; ?></td>
-                            <td><?php echo $row->category; ?></td>
+                            <th width="1%"><?php echo JText::_('COM_REPERTOIRE_COUNT'); ?></th>
+                            <th width="44%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+                            <th width="30%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
+                            <th width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+                            <th width="20%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($this->rows as $row) :
+                            $link = JRoute::_('index.php?option=com_repertoire&task=song.edit&id=' . $row->id);
+                            ?>
+                            <tr>
+                                <td><?php echo $row->count; ?></td>
+                                <td><?php echo $row->title; ?></td>
+                                <td><?php echo $row->artist; ?></td>
+                                <td><?php echo $row->language; ?></td>
+                                <td><?php echo $row->category; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
             <input type="hidden" name="task" value="" />
             <input type="hidden" name="id" value="<?php echo JRequest::getVar('id'); ?>" />
             <?php echo JHtml::_('form.token'); ?>
+            <?php if ($this->info): ?>
+                <h2><?php echo JText::_('COM_REPERTOIRE_ADDITIONAL_INFO'); ?></h2>
+                <div class="row-fluid">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td><?php echo JText::_('COM_REPERTOIRE_ID'); ?></td>
+                                <td><?php echo JText::_('COM_REPERTOIRE_INFO_CONTENT'); ?></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php for ($i = 0; count($this->info) > $i; $i++): ?>
+                                <tr>
+                                    <td><?php echo $i+1; ?></td>
+                                    <td><?php echo nl2br($this->info[$i][0]); ?></td>
+                                </tr>
+                            <?php endfor; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
         </form>
     </div>
 

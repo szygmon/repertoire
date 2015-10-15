@@ -96,6 +96,13 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
         </table>
     </div>
     <div class="height-10"></div>
+    <div class="row-fluid center">
+        <h4><?php echo JText::_('COM_REPERTOIRE_ADDITIONAL_INFO'); ?></h4>
+    </div>
+    <div class="row-fluid">
+        <textarea name="info" style="width: 100%; height: 100px;"></textarea>
+    </div>
+    <div class="height-10"></div>
     <div class="row-fluid">
         <input type="submit" name="save" id="send_repertoire" value="<?php echo JText::_('COM_REPERTOIRE_SEND_REPERTOIRE'); ?>" class="btn btn-primary" />
         <input type="hidden" name="eventid" value="<?php echo JRequest::getVar('id'); ?>" />

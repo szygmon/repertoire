@@ -111,4 +111,24 @@ class RepertoireModelEvents extends JModelLegacy {
         $db->setQuery($query);
         $db->execute();
     }
+    
+    /*
+     * Metoda pobierająca informacje dla wydarzenia
+     * 
+     * @param   int     $id     ID wydarzenia
+     * 
+     * @return  array   Tablica z informacjami od klientów
+     */
+    function getInfo($id) {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true)
+                ->select('info')
+                ->from($db->quoteName('#__repertoire_info'))
+                ->where('eventid='.$id);
+        
+        $db->setQuery($query);
+        $result = $db->loadRowList();
+        
+        return $result;
+    }
 }

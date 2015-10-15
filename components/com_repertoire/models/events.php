@@ -78,4 +78,18 @@ class RepertoireModelEvents extends JModelItem {
 
         $result = JFactory::getDbo()->insertObject('#__repertoire_songs_events', $row);
     }
+    
+    /*
+     * Metoda dodająca informacje/dedykazje/życzenia do tabeli #__repertoire_info w BD
+     * 
+     * @param   int     $songid     ID utworu
+     * @param   int     $eventid    ID wydarzenia
+     */
+    function addInfo($eventid, $info) {
+        $row = new stdClass();
+        $row->eventid = $eventid;
+        $row->info = $info;
+
+        $result = JFactory::getDbo()->insertObject('#__repertoire_info', $row);
+    }
 }

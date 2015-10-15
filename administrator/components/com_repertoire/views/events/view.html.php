@@ -22,6 +22,7 @@ class RepertoireViewEvents extends JViewLegacy {
         $app = JFactory::getApplication();
         if ($app->input->get('layout', 'default') == 'list') {
             $this->rows = $this->getModel()->getSongs(JRequest::getVar('id'));
+            $this->info = $this->getModel()->getInfo(JRequest::getVar('id'));
         } else {
             $this->rows = $this->get('Events');
         }
