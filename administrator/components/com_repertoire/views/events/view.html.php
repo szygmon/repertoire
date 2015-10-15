@@ -1,8 +1,10 @@
 <?php
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireViewEvents extends JViewLegacy {
+
     function display($tpl = null) {
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
@@ -25,12 +27,11 @@ class RepertoireViewEvents extends JViewLegacy {
             $this->info = $this->getModel()->getInfo(JRequest::getVar('id'));
         } else {
             $this->rows = $this->get('Events');
+            // Info o wymaganiach pliku
+            $application = JFactory::getApplication();
+            $application->enqueueMessage(JText::_('COM_REPERTOIRE_EVENTS_INFO'), 'notice');
         }
 
-        // Info o wymaganiach pliku
-        $application = JFactory::getApplication();
-        $application->enqueueMessage(JText::_('COM_REPERTOIRE_EVENTS_INFO'), 'notice');
-        
         parent::display($tpl);
     }
 
@@ -47,9 +48,10 @@ class RepertoireViewEvents extends JViewLegacy {
             JToolBarHelper::editList('event.edit');
             JToolBarHelper::deleteList(JText::_('COM_REPERTOIRE_CONFIRM_DELETE'), 'events.delete');
             JToolBarHelper::custom('events.deleteold', 'delete', '', JText::_('COM_REPERTOIRE_DELETE_OLD'), false);
-                    //(JText::_('COM_REPERTOIRE_CONFIRM_DELETE_OLD'), 'events.deleteold', JText::_('COM_REPERTOIRE_DELETE_OLD'));
+            //(JText::_('COM_REPERTOIRE_CONFIRM_DELETE_OLD'), 'events.deleteold', JText::_('COM_REPERTOIRE_DELETE_OLD'));
         }
         if (JFactory::getUser()->authorise('core.admin', 'com_repertoire'))
             JToolbarHelper::preferences('com_repertoire');
     }
+
 }
