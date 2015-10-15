@@ -13,7 +13,8 @@ class RepertoireControllerSong extends JControllerForm {
     // Obsługa ładowania/usuwania pliku MP3
     public function save($key = null, $urlVar = null) {
         $songid = JRequest::getVar('id');
-        $deletefile = JFactory::getApplication()->input->get('jform', array(), 'array')['removemp3'];
+        $jform = JFactory::getApplication()->input->get('jform', array(), 'array');
+        $deletefile = $jform['removemp3'];
         
         // Wywołanie rodzica
         parent::save($key, $urlVar);
