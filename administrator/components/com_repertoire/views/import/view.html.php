@@ -32,7 +32,8 @@ class RepertoireViewImport extends JViewLegacy {
 
         // Przyciski
         JToolBarHelper::apply('import.import', JText::_('COM_REPERTOIRE_IMPORT_NOW'));
-        JToolbarHelper::preferences('com_repertoire');
+        if (JFactory::getUser()->authorise('core.admin', 'com_repertoire'))
+            JToolbarHelper::preferences('com_repertoire');
     }
 
 }

@@ -45,6 +45,7 @@ class RepertoireViewEvents extends JViewLegacy {
             JToolBarHelper::custom('events.deleteold', 'delete', '', JText::_('COM_REPERTOIRE_DELETE_OLD'), false);
                     //(JText::_('COM_REPERTOIRE_CONFIRM_DELETE_OLD'), 'events.deleteold', JText::_('COM_REPERTOIRE_DELETE_OLD'));
         }
-        JToolbarHelper::preferences('com_repertoire');
+        if (JFactory::getUser()->authorise('core.admin', 'com_repertoire'))
+            JToolbarHelper::preferences('com_repertoire');
     }
 }

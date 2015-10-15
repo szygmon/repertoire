@@ -1,6 +1,11 @@
 <?php
 // Brak bezpośredniego dostępu do pliku
-defined('_JEXEC') or die('Restricted access'); 
+defined('_JEXEC') or die('Restricted access');
+
+// Sprawdzanie dostępu
+if (!JFactory::getUser()->authorise('core.manage', 'com_repertoire')) {
+    throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'));
+}
 
 JLoader::register('RepertoireHelper', JPATH_COMPONENT . '/helpers/repertoire.php');
 
@@ -15,7 +20,7 @@ $controller->redirect();
 
 
 
- 
- 
 
- 
+
+
+
