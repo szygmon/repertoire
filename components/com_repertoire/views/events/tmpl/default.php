@@ -8,9 +8,7 @@ $document->addScript('/media/system/js/calendar.js');
 $document->addScript('/media/system/js/calendar-setup.js');
 
 if ($this->params->get('show_page_heading', 1)) : ?>
-    <div class="page-header">
-        <h2> <?php echo $this->escape($this->params->get('page_title')); ?> </h2>
-    </div>
+    <h2> <?php echo $this->escape($this->params->get('page_title')); ?> </h2>
 <?php endif; ?>
 <form action="<?php echo JRoute::_('index.php?option=com_repertoire&view=events&layout=mylist'); ?>" method="post" name="Form">
 

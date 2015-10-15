@@ -12,9 +12,7 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 ?>
 
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
-    <div class="page-header">
-        <h2> <?php echo $this->escape($this->params->get('page_title')); ?> </h2>
-    </div>
+    <h2> <?php echo $this->escape($this->params->get('page_title')); ?> </h2>
 <?php endif;
 if ($this->params->get('pre_text', NULL))
     echo $this->params->get('pre_text');
@@ -26,15 +24,17 @@ if ($this->params->get('pre_text', NULL))
             <th <?php echo $span; ?> width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
             <?php if ($this->params->get('show_language', 1)): ?>
                 <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-            <?php endif; 
-            if ($this->params->get('show_category', 1)): ?>
+            <?php endif;
+            if ($this->params->get('show_category', 1)):
+                ?>
                 <th <?php echo $span; ?> width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
-            <?php endif; 
-            if ($this->params->get('show_demo', 1)): ?>
+            <?php endif;
+            if ($this->params->get('show_demo', 1)):
+                ?>
                 <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
-            <?php endif; ?>
+<?php endif; ?>
         </tr>
-        <?php if ($this->params->get('show_demo', 1)): ?>
+<?php if ($this->params->get('show_demo', 1)): ?>
             <tr>
                 <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
                 <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
@@ -50,19 +50,21 @@ if ($this->params->get('pre_text', NULL))
             ?>
             <tr>
                 <td>
-                    <?php if ($this->params->get('show_news', 1) && date("Y-m-d", strtotime("-" . $this->params->get('news', 3) . " months")) < $row->date): ?>
+    <?php if ($this->params->get('show_news', 1) && date("Y-m-d", strtotime("-" . $this->params->get('news', 3) . " months")) < $row->date): ?>
                         <img src="<?php echo $replink; ?>/images/new.png" />
-                    <?php endif; ?>
+                <?php endif; ?>
                     <a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a>
                 </td>
                 <td><?php echo $row->artist; ?></td>
                 <?php if ($this->params->get('show_language', 1)): ?>
                     <td><?php echo $row->language; ?></td>
-                <?php endif; 
-                if ($this->params->get('show_category', 1)): ?>
+                <?php endif;
+                if ($this->params->get('show_category', 1)):
+                    ?>
                     <td><?php echo $row->category; ?></td>
-                <?php endif; 
-                if ($this->params->get('show_demo', 1)): ?>
+    <?php endif;
+    if ($this->params->get('show_demo', 1)):
+        ?>
                     <td>
                         <?php if ($row->demo_audio): ?>
                             <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
@@ -73,13 +75,13 @@ if ($this->params->get('pre_text', NULL))
                         <?php endif ?>
                     </td>
                     <td class="center" style="padding: 7px;">
-                        <?php if ($row->demo_video): ?>
+                <?php if ($row->demo_video): ?>
                             <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="<?php echo $replink; ?>/images/yt.png" /></a>
-                        <?php endif ?>
+        <?php endif ?>
                     </td>
-                <?php endif; ?>
+    <?php endif; ?>
             </tr>
-        <?php endforeach; ?>
+<?php endforeach; ?>
     </tbody>
 </table>
 
