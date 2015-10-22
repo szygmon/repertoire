@@ -1,11 +1,24 @@
 <?php
+/**
+ * @package     Joomla.Site
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
 
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireViewRepertoire extends JViewLegacy {
 
-    function display($tpl = null) {
+    /**
+     * Execute and display a template script.
+     *
+     * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+     *
+     * @return  mixed  A string if successful, otherwise a Error object.
+     */
+    public function display($tpl = null) {
         $this->rows = $this->get('Repertoire');
 
         $app = JFactory::getApplication();
@@ -25,5 +38,4 @@ class RepertoireViewRepertoire extends JViewLegacy {
 
         parent::display($tpl);
     }
-
 }

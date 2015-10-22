@@ -1,9 +1,20 @@
 <?php
+/**
+ * @package     Joomla.Site
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Model dla ustalania repertuaru dla wydarzeń przez gości
+ */
 class RepertoireModelEvents extends JModelItem {
-    /*
+    
+    /**
      * Metoda pobiera repertuar muzyczny zespołu
      * 
      * @return  array   Lista obiektów tabeli #__repertoire
@@ -23,7 +34,7 @@ class RepertoireModelEvents extends JModelItem {
         return $result;
     }
 
-    /*
+    /**
      * Metoda sprawdzająca poprawność formularza dla wyboru wydarzenia przez klienta
      * 
      * @param   date    $date   Data wydarzenia w formacie Y-m-d
@@ -45,7 +56,7 @@ class RepertoireModelEvents extends JModelItem {
         return $result->id;
     }
 
-    /*
+    /**
      * Metoda pobierająca dane na temat wydarzenia
      * 
      * @return  Object  Obiekt zawierający pola tabeli #__repertoire_events dla wybranego wydarzenia
@@ -65,7 +76,7 @@ class RepertoireModelEvents extends JModelItem {
         return $result;
     }
 
-    /*
+    /**
      * Metoda dodająca utwór do tabeli #__repertoire_songs_events w BD
      * 
      * @param   int     $songid     ID utworu
@@ -76,20 +87,20 @@ class RepertoireModelEvents extends JModelItem {
         $row->songid = $songid;
         $row->eventid = $eventid;
 
-        $result = JFactory::getDbo()->insertObject('#__repertoire_songs_events', $row);
+        JFactory::getDbo()->insertObject('#__repertoire_songs_events', $row);
     }
     
-    /*
+    /**
      * Metoda dodająca informacje/dedykazje/życzenia do tabeli #__repertoire_info w BD
      * 
-     * @param   int     $songid     ID utworu
      * @param   int     $eventid    ID wydarzenia
+     * @param   int     $info       Treść życzenia, dedykacji
      */
     function addInfo($eventid, $info) {
         $row = new stdClass();
         $row->eventid = $eventid;
         $row->info = $info;
 
-        $result = JFactory::getDbo()->insertObject('#__repertoire_info', $row);
+        JFactory::getDbo()->insertObject('#__repertoire_info', $row);
     }
 }

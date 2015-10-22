@@ -1,8 +1,17 @@
 <?php
+/**
+ * @package     Joomla.Site
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
 
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Events class.
+ */
 class RepertoireControllerEvents extends JControllerForm {
 
     // Sprawdzanie poprawnego hasła i daty
@@ -38,5 +47,4 @@ class RepertoireControllerEvents extends JControllerForm {
 
         $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_EVENTS_ADD_SUCCESS'));
     }
-
 }

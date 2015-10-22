@@ -1,9 +1,20 @@
 <?php
+/**
+ * @package     Joomla.Site
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Model dla listy utworów
+ */
 class RepertoireModelRepertoire extends JModelItem {
-    /*
+    
+    /**
      * Metoda pobiera repertuar muzyczny zespołu
      * 
      * @return  array   Lista obiektów tabeli #__repertoire

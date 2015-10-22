@@ -1,10 +1,27 @@
 <?php
+/**
+ * @package     Joomla.Site
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Widok dla wybiarania utworów na imprezę przez gości
+ */
 class RepertoireViewEvents extends JViewLegacy {
 
-    function display($tpl = null) {
+    /**
+     * Execute and display a template script.
+     *
+     * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+     *
+     * @return  mixed  A string if successful, otherwise a Error object.
+     */
+    public function display($tpl = null) {
         $this->rows = $this->get('Repertoire');
 
         $app = JFactory::getApplication();
@@ -19,7 +36,7 @@ class RepertoireViewEvents extends JViewLegacy {
         } else {
             $this->event = $this->get('Event');
         }
-        
+
         // Tytuł strony + przyrostek witryny
         $title = $this->params->get('page_title');
         if (empty($title)) {
@@ -31,7 +48,7 @@ class RepertoireViewEvents extends JViewLegacy {
         }
 
         $this->document->setTitle($title);
-        
+
         parent::display($tpl);
     }
 }
