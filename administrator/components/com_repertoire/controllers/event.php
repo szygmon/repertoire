@@ -9,5 +9,4 @@ class RepertoireControllerEvent extends JControllerForm {
         $id = JRequest::getVar('id');
         $this->setRedirect('index.php?option=com_repertoire&view=events&layout=list&tmpl=component&print=1&id='.$id);
     }
-
 }

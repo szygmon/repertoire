@@ -3,6 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireModelEvent extends JModelAdmin {
+    
     /**
      * Method to get a table object, load it if necessary.
      *

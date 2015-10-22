@@ -3,6 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireControllerSongs extends JControllerAdmin {
+    
     public function __construct($config = array()) {
         parent::__construct($config);
         // Zmiana widoku po zapisie/edycji utworu
@@ -32,5 +33,4 @@ class RepertoireControllerSongs extends JControllerAdmin {
 
         parent::delete();
     }
-
 }

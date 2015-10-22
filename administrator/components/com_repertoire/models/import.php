@@ -4,6 +4,7 @@ defined('_JEXEC') or die('Restricted access');
 require_once 'components/com_repertoire/excel_reader2.php';
 
 class RepertoireModelImport extends JModelLegacy {
+    
     /*
      * Metoda do importu utworów z pliku Excel 97-2003
      * 

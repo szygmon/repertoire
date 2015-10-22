@@ -3,6 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireControllerEvents extends JControllerAdmin {
+    
     /**
      * Proxy for getModel.
      *

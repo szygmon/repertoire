@@ -3,6 +3,7 @@
 defined('_JEXEC') or die;
 
 abstract class RepertoireHelper {
+    
     // Sidebar
     public static function addSubmenu($vName) {
         JHtmlSidebar::addEntry(

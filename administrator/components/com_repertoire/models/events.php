@@ -9,9 +9,10 @@ class RepertoireModelEvents extends JModelLegacy {
      * 
      * @return  array   tablica obiektów tabeli #__repertoire 
      * i pole songs zawierające ilość utworów dla wydarzenia
-     * z tabeli #__repertoire_songs_events
+     * z tabeli #__repertoire_songs_events oraz pole info zawierające ilość
+     * informacji od klientów z tabeli #__repertoire_info
      */
-    function getEvents() {
+    public function getEvents() {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
                 ->select('#__repertoire_events.*, COUNT(#__repertoire_songs_events.songid) as songs, COUNT(#__repertoire_info.eventid) as info')
@@ -35,12 +36,11 @@ class RepertoireModelEvents extends JModelLegacy {
      * oraz pole count, zawierające ilość wystąpienia danego utworu - popularność,
      * name - nazwę wydarzenia i date - datę wydarzenia
      */
-    function getSongs($event) {
+    public function getSongs($event) {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
                 ->select('#__repertoire.*, COUNT(#__repertoire_songs_events.songid) as count, #__categories.title as category')
                 ->leftJoin('#__repertoire_songs_events on id=#__repertoire_songs_events.songid')
-                //->leftJoin('#__repertoire_events on #__repertoire_songs_events.eventid=#__repertoire_events.id')
                 ->leftJoin('#__categories on catid=#__categories.id')
                 ->from($db->quoteName('#__repertoire'))
                 ->where('#__repertoire_songs_events.eventid=' . $event)
@@ -60,7 +60,7 @@ class RepertoireModelEvents extends JModelLegacy {
      * 
      * @return  object  Obekt tabeli #__repertoire_events
      */
-    function getEventInfo($id) {
+    public function getEventInfo($id) {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
                 ->select('name, date')
@@ -119,6 +119,14 @@ class RepertoireModelEvents extends JModelLegacy {
 
             $db->setQuery($query);
             $db->execute();
+            
+            // Usuwanie informacji/życzeń dla starych wydarzen
+            $query = $db->getQuery(true)
+                    ->delete($db->quoteName('#__repertoire_info'))
+                    ->where('eventid IN (' . $idq . ')');
+
+            $db->setQuery($query);
+            $db->execute();
         }
         
         // Usuwanie wydarzeń
@@ -137,7 +145,7 @@ class RepertoireModelEvents extends JModelLegacy {
      * 
      * @return  array   Tablica z informacjami od klientów
      */
-    function getInfo($id) {
+    public function getInfo($id) {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
                 ->select('info')

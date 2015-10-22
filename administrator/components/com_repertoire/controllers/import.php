@@ -3,6 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 class RepertoireControllerImport extends JControllerForm {
+    
     // Import z Excela
     public function import() {
         $result = $this->getModel()->importSongs();
@@ -14,5 +15,4 @@ class RepertoireControllerImport extends JControllerForm {
             $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_IMPORT_ERROR'));
         }
     }
-
 }
