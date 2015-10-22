@@ -42,7 +42,7 @@ if (!empty($this->sidebar)) :
                             <td><a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_REPERTOIRE_EDIT'); ?>"><?php echo $row->name; ?></a></td>
                             <td><?php echo $row->pass; ?></td>
                             <td>
-                                <?php if ($row->songs): ?>
+                                <?php if ($row->songs || $row->info): ?>
                                     <a href="<?php echo $linklist; ?>"><?php echo JText::_('COM_REPERTOIRE_EVENT_SONGS_LIST_LINK'); ?></a>
                                 <?php endif; ?>
                             </td>

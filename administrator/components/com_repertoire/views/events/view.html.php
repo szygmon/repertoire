@@ -22,14 +22,19 @@ class RepertoireViewEvents extends JViewLegacy {
         }
 
         $app = JFactory::getApplication();
+        $this->params = JComponentHelper::getParams('com_repertoire');
         if ($app->input->get('layout', 'default') == 'list') {
+            $this->event_info = $this->getModel()->getEventInfo(JRequest::getVar('id'));
             $this->rows = $this->getModel()->getSongs(JRequest::getVar('id'));
             $this->info = $this->getModel()->getInfo(JRequest::getVar('id'));
         } else {
             $this->rows = $this->get('Events');
             // Info o wymaganiach pliku
-            $application = JFactory::getApplication();
-            $application->enqueueMessage(JText::_('COM_REPERTOIRE_EVENTS_INFO'), 'notice');
+            if ($this->params->get('pass_text', NULL))
+                $passInfo = $this->params->get('pass_text');
+            else
+                $passInfo = JText::_('COM_REPERTOIRE_EVENTS_INFO');
+            $app->enqueueMessage($passInfo, 'notice');
         }
 
         parent::display($tpl);

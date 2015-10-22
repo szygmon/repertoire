@@ -17,7 +17,7 @@ if (!empty($this->sidebar)) :
         <div id="j-main-container">
         <?php endif; ?>
 
-        <h2><?php echo $this->rows[0]->date . ': ' . $this->rows[0]->name; ?></h2>
+        <h2><?php echo $this->event_info->date . ': ' . $this->event_info->name; ?></h2>
         <form action="<?php echo JRoute::_('index.php?option=com_repertoire&view=events'); ?>" method="post" name="adminForm" id="adminForm">   
             <div class="row-fluid">
                 <table id="repertoire-list" class="table table-bordered table-hover dataTable">

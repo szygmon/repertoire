@@ -11,8 +11,11 @@ class RepertoireViewEvents extends JViewLegacy {
         $this->params = $app->getParams();
 
         if ($app->input->get('layout', 'default') == 'default') {
-            // Info o wymaganiach pliku
-            $app->enqueueMessage(JText::_('COM_REPERTOIRE_EVENTS_INFO'), 'notice');
+            if ($this->params->get('pass_text', NULL))
+                $passInfo = $this->params->get('pass_text');
+            else
+                $passInfo = JText::_('COM_REPERTOIRE_EVENTS_INFO');
+            $app->enqueueMessage($passInfo, 'notice');
         } else {
             $this->event = $this->get('Event');
         }

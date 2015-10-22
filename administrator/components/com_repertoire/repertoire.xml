@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.4" method="upgrade">
     <name>COM_REPERTOIRE</name>
-    <creationDate>2015-10-13</creationDate>
+    <creationDate>2015-10-20</creationDate>
     <author>Szymon Michalewicz (szygmon)</author>
     <authorEmail>szygmon@gmail.command</authorEmail>
     <authorUrl>http://szygmon.pl</authorUrl>
     <copyright>Copyright (C) 2015 by szygmon</copyright>
     <license>Wszelkie prawa zastrzeżone</license>
     <!--  Ciąg version jest rejestrowane w tabeli -->
-    <version>1.10</version>
+    <version>1.33</version>
     <!-- Opis jest opcjonalny i domyślnie nazwa -->
     <description>COM_REPERTOIRE_DESC</description>
  
@@ -38,8 +38,6 @@
         <folder>js</folder>
         <folder>models</folder>
         <folder>views</folder>
-        
-        <folder>language</folder>
     </files>
  
     <languages folder="site/language">
@@ -53,6 +51,10 @@
         </languages>
         <!-- Administration Menu Section -->
         <menu>COM_REPERTOIRE</menu>
+		<submenu>
+            <menu link="option=com_categories&amp;extension=com_repertoire" view="categories" img="" alt="">COM_REPERTOIRE_CATEGORIES</menu>
+            <menu link="option=com_repertoire&amp;view=events" img="" alt="">COM_REPERTOIRE_EVENTS</menu>
+        </submenu>
  
         <!-- Administrator lista plików -->
         <files folder="admin">
@@ -62,14 +64,13 @@
             <filename>excel_reader2.php</filename>
             <filename>index.html</filename>
             <filename>repertoire.php</filename>
-            <filename>repertoire.xml</filename>
+            
             <folder>controllers</folder>
             <folder>helpers</folder>
             <folder>models</folder>            
             <folder>tables</folder>
             <folder>views</folder>
             
-            <folder>language</folder>
             <folder>sql</folder>
         </files>
     </administration>

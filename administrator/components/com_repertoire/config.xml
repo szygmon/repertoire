@@ -104,6 +104,19 @@
         />
     </fieldset>
     <fieldset
+        name="repertoire4"
+        label="COM_REPERTOIRE_PASS_CONFIG_LABEL"
+    >
+        <field 
+            name="pass_text" 
+            label ="COM_REPERTOIRE_PASS_CONFIG_LABEL" 
+            description="COM_REPERTOIRE_PASS_CONFIG_DESC"
+            type="editor" 
+            buttons="true"
+            filter="safehtml" 
+        />
+    </fieldset>
+    <fieldset
         name="permissions"
         label="JCONFIG_PERMISSIONS_LABEL"
         description="JCONFIG_PERMISSIONS_DESC"

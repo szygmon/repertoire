@@ -18,7 +18,7 @@ if ($this->params->get('show_page_heading', 1)) : ?>
             <div class="control-group">
                 <div class="control-label">
                     <label id="jform_date-lbl" for="date" class="required" title="">
-<?php echo JText::_('JDATE'); ?></label>
+<?php echo JText::_('COM_REPERTOIRE_EVENT_DATE'); ?></label>
                 </div>
                 <div class="controls">
                     <div class="input-append">
@@ -32,7 +32,7 @@ if ($this->params->get('show_page_heading', 1)) : ?>
             <div class="control-group">
                 <div class="control-label">
                     <label id="jform_pass-lbl" for="pass" title="">
-<?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
+<?php echo JText::_('JGLOBAL_PASSWORD'); ?>:</label>
                 </div>
                 <div class="controls">
                     <input type="text" name="pass" id="pass" value="" class="inputbox" size="50">
