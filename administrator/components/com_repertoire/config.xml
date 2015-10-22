@@ -106,6 +106,7 @@
     <fieldset
         name="repertoire4"
         label="COM_REPERTOIRE_PASS_CONFIG_LABEL"
+        description="COM_REPERTOIRE_PASS_CONFIG_INFO"
     >
         <field 
             name="pass_text" 
