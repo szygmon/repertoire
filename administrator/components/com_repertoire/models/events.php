@@ -1,16 +1,25 @@
 <?php
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Model for events
+ */
 class RepertoireModelEvents extends JModelLegacy {
     
-    /*
+    /**
      * Metoda pobierająca imprezy z BD
      * 
-     * @return  array   tablica obiektów tabeli #__repertoire 
-     * i pole songs zawierające ilość utworów dla wydarzenia
-     * z tabeli #__repertoire_songs_events oraz pole info zawierające ilość
-     * informacji od klientów z tabeli #__repertoire_info
+     * @return  array   Tablica obiektów tabeli #__repertoire i pole songs zawierające 
+     * ilość utworów dla wydarzenia z tabeli #__repertoire_songs_events 
+     * oraz pole info zawierające ilość informacji od klientów z tabeli #__repertoire_info
      */
     public function getEvents() {
         $db = JFactory::getDbo();
@@ -27,13 +36,13 @@ class RepertoireModelEvents extends JModelLegacy {
         return $result;
     }
 
-    /*
+    /**
      * Metoda pobierająca utwory dla danej imprezy
      * 
      * @param   int     $event      ID wydarzenia
      * 
-     * @return  array   tablica obiektów tabeli #__repertoire
-     * oraz pole count, zawierające ilość wystąpienia danego utworu - popularność,
+     * @return  array   Tablica obiektów tabeli #__repertoire oraz pole count, 
+     * zawierające ilość wystąpienia danego utworu - popularność,
      * name - nazwę wydarzenia i date - datę wydarzenia
      */
     public function getSongs($event) {
@@ -53,7 +62,7 @@ class RepertoireModelEvents extends JModelLegacy {
         return $result;
     }
 
-    /*
+    /**
      * Metoda zwracająca informacje: datę i nazwę wydarzenia
      * 
      * @param   int     $id     ID wydarzenia
@@ -73,7 +82,7 @@ class RepertoireModelEvents extends JModelLegacy {
         return $result;
     }
     
-    /*
+    /**
      * Metoda usuwająca utwory, wybrane przez klientów dla usuwanego wydarzenia
      * 
      * @param   array   $id     Tablica ID usuwanych imprez
@@ -90,7 +99,7 @@ class RepertoireModelEvents extends JModelLegacy {
         $db->execute();
     }
 
-    /*
+    /**
      * Metoda usuwająca z BD wydarzenia które już minęły i wszystkie powiązane wpisy
      */
     public function deleteOldEvents() {
@@ -138,7 +147,7 @@ class RepertoireModelEvents extends JModelLegacy {
         $db->execute();
     }
     
-    /*
+    /**
      * Metoda pobierająca informacje przesłane przez klientów dla wydarzenia
      * 
      * @param   int     $id     ID wydarzenia

@@ -1,7 +1,17 @@
 <?php
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Model for editing songs
+ */
 class RepertoireModelSong extends JModelAdmin {
 
     /**
@@ -65,14 +75,12 @@ class RepertoireModelSong extends JModelAdmin {
         return $data;
     }
 
-    /*
+    /**
      * Metoda do zapisu piosenki w repertuarze
      * 
      * @param   int     $songid     ID utworu (0 dla nowo dodawanego)
-     * @param   boolean $deletefile UWAGA! 1 - dla pozostawienia pliku, 0 - dla usunięcia pliku z serwera
-     * 
+     * @param   bool    $deletefile UWAGA! 1 - dla pozostawienia pliku, 0 - dla usunięcia pliku z serwera
      */
-
     public function saveSong($songid, $deletefile = 1) {
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.file');
@@ -150,12 +158,11 @@ class RepertoireModelSong extends JModelAdmin {
         }
     }
 
-    /*
+    /**
      * Metoda usuwająca pliki usuwanych utworów z bazy danych
      * 
      * @param   array   $id     ID utworów do usunięcia
      */
-
     public function deleteSongs($id) {
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.file');

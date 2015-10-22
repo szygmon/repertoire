@@ -1,12 +1,31 @@
 <?php
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Widok dla edycji wydarzeń, imprez
+ */
 class RepertoireViewEvent extends JViewLegacy {
 
     protected $form = null;
 
-    function display($tpl = null) {
+    /**
+     * Execute and display a template script.
+     *
+     * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+     *
+     * @return  mixed  A string if successful, otherwise a Error object.
+     *
+     * @since   1.6
+     */
+    public function display($tpl = null) {
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
@@ -16,6 +35,11 @@ class RepertoireViewEvent extends JViewLegacy {
         parent::display($tpl);
     }
 
+    /**
+     * Tytuł i przyciski na stronie
+     * 
+     * @return  void
+     */
     protected function addToolbar() {
         $input = JFactory::getApplication()->input;
 
@@ -38,5 +62,3 @@ class RepertoireViewEvent extends JViewLegacy {
         JToolBarHelper::cancel('event.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
     }
 }
-
-?> 

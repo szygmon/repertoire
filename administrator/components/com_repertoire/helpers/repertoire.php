@@ -1,7 +1,17 @@
 <?php
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die;
 
+/**
+ * Repertoire component helper.
+ */
 abstract class RepertoireHelper {
     
     // Sidebar

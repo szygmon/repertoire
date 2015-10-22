@@ -1,14 +1,24 @@
 <?php
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_repertoire
+ *
+ * @copyright   Copyright (C) 2015 Szymon Michalewicz. All rights reserved.
+ */
+
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 require_once 'components/com_repertoire/excel_reader2.php';
 
+/**
+ * Model Repertoire Import
+ */
 class RepertoireModelImport extends JModelLegacy {
     
-    /*
+    /**
      * Metoda do importu utworów z pliku Excel 97-2003
      * 
-     * @return  true jeśli powodzenie, false jeśli błąd
+     * @return  bool    TRUE jeśli powodzenie, FALSE jeśli błąd
      */
     public function importSongs() {
         jimport('joomla.filesystem.folder');
