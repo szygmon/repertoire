@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class RepertoireControllerSongs extends JControllerAdmin {
     
-    public function __construct($config = array()) {
+    function __construct($config = array()) {
         parent::__construct($config);
         // Zmiana widoku po zapisie/edycji utworu
         $this->view_list = 'repertoire'; 
