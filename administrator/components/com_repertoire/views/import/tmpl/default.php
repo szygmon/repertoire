@@ -3,8 +3,8 @@
 defined('_JEXEC') or die('Restricted Access');
 
 $document = JFactory::getDocument();
-$document->addStyleSheet('http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css');
-$document->addScript('http://code.jquery.com/jquery-1.10.2.min.js');
+$document->addStyleSheet('../components/com_repertoire/css/jquery.dataTables.css');
+$document->addScript('../components/com_repertoire/js/jquery-1.10.2.min.js');
 $document->addScript('../components/com_repertoire/js/jquery.dataTables.js');
 
 JHtml::_('bootstrap.tooltip');

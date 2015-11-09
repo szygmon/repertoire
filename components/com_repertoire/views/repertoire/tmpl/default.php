@@ -2,11 +2,10 @@
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted access');
 
-$replink = str_replace(JPATH_SITE, '', JPATH_COMPONENT);
 $document = JFactory::getDocument();
-$document->addStyleSheet('http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css');
-$document->addScript('http://code.jquery.com/jquery-1.10.2.min.js');
-$document->addScript($replink . '/js/jquery.dataTables.js');
+$document->addStyleSheet('components/com_repertoire/css/jquery.dataTables.css');
+$document->addScript('components/com_repertoire/js/jquery-1.10.2.min.js');
+$document->addScript('components/com_repertoire/js/jquery.dataTables.js');
 
 $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 ?>
@@ -45,13 +44,12 @@ if ($this->params->get('pre_text', NULL))
         <?php
         foreach ($this->rows as $row) :
             $search = $row->title . '+' . $row->artist;
-            //$ytlink = $row->youtube == '' ? 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search) : $row->youtube;
             $ytlink = 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search);
             ?>
             <tr>
                 <td>
     <?php if ($this->params->get('show_news', 1) && date("Y-m-d", strtotime("-" . $this->params->get('news', 3) . " months")) < $row->date): ?>
-                        <img src="<?php echo $replink; ?>/images/new.png" />
+                        <img src="components/com_repertoire/images/new.png" />
                 <?php endif; ?>
                     <a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a>
                 </td>
@@ -76,7 +74,7 @@ if ($this->params->get('pre_text', NULL))
                     </td>
                     <td class="center" style="padding: 7px;">
                 <?php if ($row->demo_video): ?>
-                            <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="<?php echo $replink; ?>/images/yt.png" /></a>
+                            <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="components/com_repertoire/images/yt.png" /></a>
         <?php endif ?>
                     </td>
     <?php endif; ?>
