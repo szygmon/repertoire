@@ -34,8 +34,6 @@
         <filename>repertoire.php</filename>
         
         <folder>controllers</folder>
-        <folder>images</folder>
-        <folder>js</folder>
         <folder>models</folder>
         <folder>views</folder>
     </files>
