@@ -3,9 +3,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 $document = JFactory::getDocument();
-$document->addStyleSheet('components/com_repertoire/css/jquery.dataTables.css');
-$document->addScript('components/com_repertoire/js/jquery-1.10.2.min.js');
-$document->addScript('components/com_repertoire/js/jquery.dataTables.js');
+$document->addStyleSheet('media/com_repertoire/css/jquery.dataTables.css');
+$document->addScript('media/com_repertoire/js/jquery-1.10.2.min.js');
+$document->addScript('media/com_repertoire/js/jquery.dataTables.js');
 
 $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 ?>
@@ -57,7 +57,7 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
                         <td class="center"><?php echo JHtml::_('grid.id', $i, $row->id); ?></td>
                         <td>
                             <?php if ($this->params->get('show_news', 1) && date("Y-m-d", strtotime("-" . $this->params->get('news', 3) . " months")) < $row->date): ?>
-                                <img src="components/com_repertoire/images/new.png" />
+                                <img src="media/com_repertoire/images/new.png" />
                             <?php endif; ?>
                             <a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a>
                         </td>
@@ -84,7 +84,7 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
                             </td>
                             <td class="center" style="padding: 7px;">
                                 <?php if ($row->demo_video): ?>
-                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="components/com_repertoire/images/yt.png" /></a>
+                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="media/com_repertoire/images/yt.png" /></a>
                                 <?php endif ?>
                             </td>
                         <?php endif; ?>

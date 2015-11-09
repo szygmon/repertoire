@@ -3,9 +3,9 @@
 defined('_JEXEC') or die('Restricted Access');
 
 $document = JFactory::getDocument();
-$document->addStyleSheet('../components/com_repertoire/css/jquery.dataTables.css');
-$document->addScript('../components/com_repertoire/js/jquery-1.10.2.min.js');
-$document->addScript('../components/com_repertoire/js/jquery.dataTables.js');
+$document->addStyleSheet('../media/com_repertoire/css/jquery.dataTables.css');
+$document->addScript('../media/com_repertoire/js/jquery-1.10.2.min.js');
+$document->addScript('../media/com_repertoire/js/jquery.dataTables.js');
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');

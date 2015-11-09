@@ -3,9 +3,9 @@
 defined('_JEXEC') or die('Restricted Access');
 
 $document = JFactory::getDocument();
-$document->addStyleSheet('../components/com_repertoire/css/jquery.dataTables.css');
-$document->addScript('../components/com_repertoire/js/jquery-1.10.2.min.js');
-$document->addScript('../components/com_repertoire/js/jquery.dataTables.js');
+$document->addStyleSheet('../media/com_repertoire/css/jquery.dataTables.css');
+$document->addScript('../media/com_repertoire/js/jquery-1.10.2.min.js');
+$document->addScript('../media/com_repertoire/js/jquery.dataTables.js');
 
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
@@ -57,7 +57,7 @@ if (!empty($this->sidebar)) :
                             </td>
                             <td class="center" style="padding: 7px;">
                                 <?php if ($row->demo_video): ?>
-                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="../components/com_repertoire/images/yt.png" /></a>
+                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="../media/com_repertoire/images/yt.png" /></a>
                                 <?php endif ?>
                             </td>
                         </tr>
