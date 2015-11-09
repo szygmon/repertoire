@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
  * Model dla ustalania repertuaru dla wydarzeń przez gości
  */
 class RepertoireModelEvents extends JModelItem {
-    
+
     /**
      * Metoda pobiera repertuar muzyczny zespołu
      * 
@@ -22,12 +22,12 @@ class RepertoireModelEvents extends JModelItem {
      */
     function getRepertoire() {
         $db = JFactory::getDbo();
-        
+
         $query = $db->getQuery(true)
                 ->select('#__repertoire.*, #__categories.title as category')
                 ->leftJoin('#__categories on catid=#__categories.id')
                 ->from($db->quoteName('#__repertoire'));
-        
+
         $db->setQuery($query);
         $result = $db->loadObjectList();
 
@@ -44,12 +44,12 @@ class RepertoireModelEvents extends JModelItem {
      */
     function check($date, $pass = '') {
         $db = JFactory::getDbo();
-        
+
         $query = $db->getQuery(true)
                 ->select('id')
                 ->from($db->quoteName('#__repertoire_events'))
                 ->where('date = "' . $date . '" AND (pass = "' . $pass . '" OR pass = "NULL")');
-        
+
         $db->setQuery($query);
         $result = $db->loadObject();
 
@@ -62,18 +62,21 @@ class RepertoireModelEvents extends JModelItem {
      * @return  Object  Obiekt zawierający pola tabeli #__repertoire_events dla wybranego wydarzenia
      */
     function getEvent() {
-        $id = JRequest::getVar('id');
+        $id = JRequest::getVar('id', 0, '', 'INT');
         
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true)
-                ->select('*')
-                ->from($db->quoteName('#__repertoire_events'))
-                ->where('id = ' . $id);
-        
-        $db->setQuery($query);
-        $result = $db->loadObject();
+        if ($id) {
+            $db = JFactory::getDbo();
+            $query = $db->getQuery(true)
+                    ->select('*')
+                    ->from($db->quoteName('#__repertoire_events'))
+                    ->where('id = ' . $id);
 
-        return $result;
+            $db->setQuery($query);
+            $result = $db->loadObject();
+
+            return $result;
+        }
+        return NULL;
     }
 
     /**
@@ -89,7 +92,7 @@ class RepertoireModelEvents extends JModelItem {
 
         JFactory::getDbo()->insertObject('#__repertoire_songs_events', $row);
     }
-    
+
     /**
      * Metoda dodająca informacje/dedykazje/życzenia do tabeli #__repertoire_info w BD
      * 
