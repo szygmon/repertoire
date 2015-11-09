@@ -50,7 +50,7 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
             </thead>
             <tbody>
                 <?php
-                foreach ($this->rows as $row) :
+                foreach ($this->rows as $i => $row) :
                     $search = $row->title . '+' . $row->artist;
                     //$ytlink = $row->youtube == '' ? 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search) : $row->youtube;
                     $ytlink = 'https://www.youtube.com/results?search_query=' . str_replace(' ', '+', $search);

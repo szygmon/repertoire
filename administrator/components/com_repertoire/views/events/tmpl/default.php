@@ -32,7 +32,7 @@ if (!empty($this->sidebar)) :
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($this->rows as $row) :
+                    foreach ($this->rows as $i => $row) :
                         $link = JRoute::_('index.php?option=com_repertoire&task=event.edit&id=' . $row->id);
                         $linklist = JRoute::_('index.php?option=com_repertoire&view=events&layout=list&id=' . $row->id);
                         ?>

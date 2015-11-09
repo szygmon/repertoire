@@ -37,7 +37,7 @@ if (!empty($this->sidebar)) :
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($this->rows as $row) :
+                    foreach ($this->rows as $i => $row) :
                         $link = JRoute::_('index.php?option=com_repertoire&task=song.edit&id=' . $row->id);
                         ?>
                         <tr>
