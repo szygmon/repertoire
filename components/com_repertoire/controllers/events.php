@@ -19,13 +19,13 @@ class RepertoireControllerEvents extends JControllerForm {
         $app = JFactory::getApplication();
         $postData = $app->input->post;
 
-        $cid = $this->getModel()->check($postData->get('date'), $postData->get('pass'));
+        $id = $this->getModel()->check($postData->get('date'), $postData->get('pass'));
 
-        if ($cid != NULL) {
+        if ($id != NULL) {
             $session = JFactory::getSession();
-            $session->set('events', $cid);
+            $session->set('repertoire_for_event', $id);
 
-            $this->setRedirect('index.php?option=com_repertoire&view=events&layout=mylist&id=' . $cid, JText::_('COM_REPERTOIRE_EVENTS_YOUR_LIST'));
+            $this->setRedirect('index.php?option=com_repertoire&view=events&layout=mylist&id=' . $id, JText::_('COM_REPERTOIRE_EVENTS_YOUR_LIST'));
         } else
             $this->setRedirect('index.php?option=com_repertoire&view=events', JText::_('COM_REPERTOIRE_EVENTS_CHECK_ERROR'), 'error');
     }
@@ -33,7 +33,8 @@ class RepertoireControllerEvents extends JControllerForm {
     // Dodawanie utworów klienta do BD
     public function add() {
         $songs = JRequest::getVar('cid', array(), '', 'array');
-        $event = JRequest::getVar('eventid');
+        $getSession = JFactory::getSession();
+        $event= $getSession->get('repertoire_for_event');
         $info = JFactory::getApplication()->input->get('info', null, 'HTML');
         foreach ($songs as $song) {
             $this->getModel()->addSong($song, $event);
@@ -43,7 +44,7 @@ class RepertoireControllerEvents extends JControllerForm {
 
         // Czyszczeie sesji po poprawnym dodaniu
         $session = JFactory::getSession();
-        $session->clear('events');
+        $session->clear('repertoire_for_event');
 
         $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_EVENTS_ADD_SUCCESS'));
     }

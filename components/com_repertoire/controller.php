@@ -29,10 +29,10 @@ class RepertoireController extends JControllerLegacy {
         // Zabezpieczenie przed niepowołanym dostępem - sesja
         if ($this->input->get('layout', 'default') == 'mylist') {
             $getSession = JFactory::getSession();
-            $session = $getSession->get('events');
+            $session = $getSession->get('repertoire_for_event');
 
             if (empty($session) || $session == 0 || $session != JRequest::getVar('id')) {
-                $getSession->clear('events');
+                $getSession->clear('repertoire_for_event');
                 $this->setRedirect('index.php?option=com_repertoire&view=events', JText::_('COM_REPERTOIRE_EVENTS_SESSION_ERROR'), 'error');
             }
         }
