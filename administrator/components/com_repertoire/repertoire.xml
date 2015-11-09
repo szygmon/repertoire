@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.4" method="upgrade">
     <name>COM_REPERTOIRE</name>
-    <creationDate>2015-10-20</creationDate>
+    <creationDate>2015-10-22</creationDate>
     <author>Szymon Michalewicz (szygmon)</author>
     <authorEmail>szygmon@gmail.command</authorEmail>
     <authorUrl>http://szygmon.pl</authorUrl>
     <copyright>Copyright (C) 2015 by szygmon</copyright>
     <license>Wszelkie prawa zastrzeżone</license>
     <!--  Ciąg version jest rejestrowane w tabeli -->
-    <version>1.33</version>
+    <version>1.60</version>
     <!-- Opis jest opcjonalny i domyślnie nazwa -->
     <description>COM_REPERTOIRE_DESC</description>
  
@@ -39,6 +39,12 @@
         <folder>models</folder>
         <folder>views</folder>
     </files>
+	
+	<media destination="com_repertoire" folder="media">
+		<folder>js</folder>
+		<folder>images</folder>
+		<folder>css</folder>
+	</media>
  
     <languages folder="site/language">
         <language tag="pl-PL">pl-PL.com_repertoire.ini</language>
