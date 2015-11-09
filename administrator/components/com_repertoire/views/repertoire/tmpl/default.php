@@ -72,8 +72,8 @@ if (!empty($this->sidebar)) :
 
 <script type="text/javascript">
     var table = $('#repertoire-list').dataTable({
-        "bPaginate": false, // wyłączone bo coś nie działa
-        "bLengthChange": false, //"iDisplayLength": 50
+        "bPaginate": false,
+        "bLengthChange": false, 
         "bFilter": true,
         "bSort": true,
         "bInfo": true,

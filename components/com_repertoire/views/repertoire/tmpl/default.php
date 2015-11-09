@@ -6,6 +6,7 @@ $document = JFactory::getDocument();
 $document->addStyleSheet('media/com_repertoire/css/jquery.dataTables.css');
 $document->addScript('media/com_repertoire/js/jquery-1.10.2.min.js');
 $document->addScript('media/com_repertoire/js/jquery.dataTables.js');
+$document->addScript('media/com_repertoire/js/dataTables-pagination.js');
 
 $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
 ?>
@@ -85,7 +86,7 @@ if ($this->params->get('pre_text', NULL))
 
 <script type="text/javascript">
     $('#repertoire-list').dataTable({
-        "bPaginate": true,
+        "sPaginationType": "repertoire",
         "bLengthChange": true,
         "bFilter": true,
         "bSort": true,

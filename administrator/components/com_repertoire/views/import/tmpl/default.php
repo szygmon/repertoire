@@ -2,15 +2,6 @@
 // Brak bezpośredniego dostępu do pliku
 defined('_JEXEC') or die('Restricted Access');
 
-$document = JFactory::getDocument();
-$document->addStyleSheet('../media/com_repertoire/css/jquery.dataTables.css');
-$document->addScript('../media/com_repertoire/js/jquery-1.10.2.min.js');
-$document->addScript('../media/com_repertoire/js/jquery.dataTables.js');
-
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.multiselect');
-JHtml::_('formbehavior.chosen', 'select');
-
 if (!empty($this->sidebar)) :
     ?>
     <div id="j-sidebar-container" class="span2">
