@@ -22,7 +22,8 @@ class RepertoireViewEvents extends JViewLegacy {
      * @return  mixed  A string if successful, otherwise a Error object.
      */
     public function display($tpl = null) {
-        $this->rows = $this->get('Repertoire');
+        if ($this->getLayout() == "mylist") 
+            $this->rows = $this->get('Repertoire');
 
         $app = JFactory::getApplication();
         $this->params = $app->getParams();
