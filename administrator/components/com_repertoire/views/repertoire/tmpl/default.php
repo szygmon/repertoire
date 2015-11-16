@@ -23,16 +23,16 @@ if (!empty($this->sidebar)) :
             <table id="repertoire-list" class="table table-bordered table-hover dataTable">
                 <thead>
                     <tr>
-                        <th rowspan="2" width="1%" align="center"><?php echo JHtml::_('grid.checkall'); ?></th>
-                        <th rowspan="2" width="34%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
-                        <th rowspan="2" width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
-                        <th rowspan="2" width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-                        <th rowspan="2" width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
+                        <th rowspan="2" style="width: 1%; text-align: center"><?php echo JHtml::_('grid.checkall'); ?></th>
+                        <th rowspan="2" style="width: 34%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+                        <th rowspan="2" style="width: 20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
+                        <th rowspan="2" style="width: 5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+                        <th rowspan="2" style="width: 15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
                         <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
                     </tr>
                     <tr>
-                        <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
-                        <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
+                        <th class="center" style="width: 20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
+                        <th class="center" style="width: 5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +57,7 @@ if (!empty($this->sidebar)) :
                             </td>
                             <td class="center" style="padding: 7px;">
                                 <?php if ($row->demo_video): ?>
-                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="../media/com_repertoire/images/yt.png" /></a>
+                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="../media/com_repertoire/images/yt.png" alt="<?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?>" /></a>
                                 <?php endif ?>
                             </td>
                         </tr>
@@ -67,21 +67,22 @@ if (!empty($this->sidebar)) :
             <input type="hidden" name="task" value="" />
             <input type="hidden" name="boxchecked" value="0" />
             <?php echo JHtml::_('form.token'); ?>
+        </form>
     </div>
-</form>
 
-<script type="text/javascript">
-    var table = $('#repertoire-list').dataTable({
-        "bPaginate": false,
-        "bLengthChange": false, 
-        "bFilter": true,
-        "bSort": true,
-        "bInfo": true,
-        "bAutoWidth": false,
-        "aoColumnDefs": [{
-                'bSortable': false,
+
+    <script type="text/javascript">
+            var table = $('#repertoire-list').dataTable({
+            "bPaginate": false,
+            "bLengthChange": false, 
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+                    "aoColumnDefs": [{
+                    'bSortable': false,
                 'aTargets': [0, 5, 6] // wyłączenie sortowania dla tych kolumn
-            }]
-    });
-    table.fnSort([[1, 'asc']]); // sortowanie wg tytułu
-</script>
+        }]
+        });
+        table.fnSort([[1, 'asc']]); // sortowanie wg tytułu
+    </script>

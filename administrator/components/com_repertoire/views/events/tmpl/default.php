@@ -23,7 +23,7 @@ if (!empty($this->sidebar)) :
             <table id="repertoire-list" class="table table-bordered table-hover dataTable">
                 <thead>
                     <tr>
-                        <th width="1%" align="center"><?php echo JHtml::_('grid.checkall'); ?></th>
+                        <th style="width: 1%; align: center"><?php echo JHtml::_('grid.checkall'); ?></th>
                         <th><?php echo JText::_('COM_REPERTOIRE_EVENT_DATE'); ?></th>
                         <th><?php echo JText::_('COM_REPERTOIRE_EVENT_NAME'); ?></th>
                         <th><?php echo JText::_('COM_REPERTOIRE_EVENT_PASS'); ?></th>
@@ -53,27 +53,27 @@ if (!empty($this->sidebar)) :
             <input type="hidden" name="task" value="" />
             <input type="hidden" name="boxchecked" value="0" />
             <?php echo JHtml::_('form.token'); ?>
+        </form>
     </div>
-</form>
 
-<script type="text/javascript">
-    var table = $('#repertoire-list').dataTable({
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bFilter": true,
-        "bSort": true,
-        "bInfo": true,
-        "bAutoWidth": false,
-        "aoColumnDefs": [{
-                'bSortable': false,
-                'aTargets': [0] // wyłączenie sortowania dla tych kolumn
-            }]
-    });
-    table.fnSort([[1, 'asc']]); // sortowanie wg daty
-    $('#toolbar button:eq(3)').attr('onClick', null).off('click');
-    $('#toolbar button:eq(3)').click(function(){
-        if (confirm('<?php echo JText::_('COM_REPERTOIRE_CONFIRM_DELETE_OLD'); ?>')){
-            Joomla.submitbutton('events.deleteold');
-        }
-    })
-</script>
+    <script type="text/javascript">
+        var table = $('#repertoire-list').dataTable({
+            "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+            "aoColumnDefs": [{
+                    'bSortable': false,
+                    'aTargets': [0] // wyłączenie sortowania dla tych kolumn
+                }]
+        });
+        table.fnSort([[1, 'asc']]); // sortowanie wg daty
+        $('#toolbar button:eq(3)').attr('onClick', null).off('click');
+        $('#toolbar button:eq(3)').click(function () {
+            if (confirm('<?php echo JText::_('COM_REPERTOIRE_CONFIRM_DELETE_OLD'); ?>')) {
+                Joomla.submitbutton('events.deleteold');
+            }
+        })
+    </script>

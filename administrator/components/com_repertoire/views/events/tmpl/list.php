@@ -23,11 +23,11 @@ if (!empty($this->sidebar)) :
                 <table id="repertoire-list" class="table table-bordered table-hover dataTable">
                     <thead>
                         <tr>
-                            <th width="1%"><?php echo JText::_('COM_REPERTOIRE_COUNT'); ?></th>
-                            <th width="44%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
-                            <th width="30%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
-                            <th width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
-                            <th width="20%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
+                            <th style="width: 1%"><?php echo JText::_('COM_REPERTOIRE_COUNT'); ?></th>
+                            <th style="width: 44%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+                            <th style="width: 30%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
+                            <th style="width: 5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+                            <th style="width: 20%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
                         </tr>
                     </thead>
                     <tbody>

@@ -20,14 +20,14 @@ if ($this->params->get('pre_text', NULL))
 <table id="repertoire-list" class="table table-bordered table-hover dataTable">
     <thead>
         <tr>
-            <th <?php echo $span; ?> width="35%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
-            <th <?php echo $span; ?> width="20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
+            <th <?php echo $span; ?> style="width: 35%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+            <th <?php echo $span; ?> style="width: 20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
             <?php if ($this->params->get('show_language', 1)): ?>
-                <th <?php echo $span; ?> width="5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+                <th <?php echo $span; ?> style="width: 5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
             <?php endif;
             if ($this->params->get('show_category', 1)):
                 ?>
-                <th <?php echo $span; ?> width="15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
+                <th <?php echo $span; ?> style="width: 15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
             <?php endif;
             if ($this->params->get('show_demo', 1)):
                 ?>
@@ -36,8 +36,8 @@ if ($this->params->get('pre_text', NULL))
         </tr>
 <?php if ($this->params->get('show_demo', 1)): ?>
             <tr>
-                <th class="center" width="20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
-                <th class="center" width="5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
+                <th class="center" style="width: 20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
+                <th class="center" style="width: 5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
             </tr>
         <?php endif; ?>
     </thead>
@@ -50,7 +50,7 @@ if ($this->params->get('pre_text', NULL))
             <tr>
                 <td>
     <?php if ($this->params->get('show_news', 1) && date("Y-m-d", strtotime("-" . $this->params->get('news', 3) . " months")) < $row->date): ?>
-                        <img src="media/com_repertoire/images/new.png" />
+                        <img src="media/com_repertoire/images/new.png" alt="<?php echo JText::_('COM_REPERTOIRE_NEW'); ?>" />
                 <?php endif; ?>
                     <a href="<?php echo $ytlink; ?>" target="_blank"><?php echo $row->title; ?></a>
                 </td>
@@ -75,7 +75,7 @@ if ($this->params->get('pre_text', NULL))
                     </td>
                     <td class="center" style="padding: 7px;">
                 <?php if ($row->demo_video): ?>
-                            <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="media/com_repertoire/images/yt.png" /></a>
+                            <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="media/com_repertoire/images/yt.png" alt="<?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?>" /></a>
         <?php endif ?>
                     </td>
     <?php endif; ?>
