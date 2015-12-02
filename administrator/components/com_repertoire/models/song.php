@@ -121,6 +121,19 @@ class RepertoireModelSong extends JModelAdmin {
                 $result = $db->loadRow();
 
                 $songid = $result[0];
+            } else { 
+                // Usuwanie poprzedniego utworu z serwera jeśli jest
+                $query = $db->getQuery(true)
+                    ->select('demo_audio')
+                    ->from($db->quoteName('#__repertoire'))
+                    ->where('id=' . $songid);
+
+                $db->setQuery($query);
+                $result = $db->loadRow();
+                
+                if ($result[0] != NULL) {
+                    JFile::delete($folder . "/" . $result[0]);
+                }
             }
             
             // Dodanie ścieżki do MP3 na serwerze
@@ -150,7 +163,7 @@ class RepertoireModelSong extends JModelAdmin {
             // Usuwanie wpisu w BD
             $query = $db->getQuery(true)
                     ->update($db->quoteName('#__repertoire'))
-                    ->set('demo_audio = ""')
+                    ->set('demo_audio = NULL')
                     ->where('id=' . $songid);
 
             $db->setQuery($query);
