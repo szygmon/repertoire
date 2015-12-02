@@ -81,7 +81,7 @@ if (!empty($this->sidebar)) :
             "bAutoWidth": false,
                     "aoColumnDefs": [{
                     'bSortable': false,
-                'aTargets': [0, 5, 6] // wyłączenie sortowania dla tych kolumn
+                'aTargets': [0] // wyłączenie sortowania dla tych kolumn
         }]
         });
         table.fnSort([[1, 'asc']]); // sortowanie wg tytułu

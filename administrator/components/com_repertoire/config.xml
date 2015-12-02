@@ -27,10 +27,21 @@
             <option value="1">JSHOW</option>
         </field>
         <field
-            name="show_demo"
+            name="show_demo_audio"
             type="radio"
-            label="COM_REPERTOIRE_SHOW_DEMO"
-            description="COM_REPERTOIRE_SHOW_DEMO_DESC"
+            label="COM_REPERTOIRE_SHOW_DEMO_AUDIO"
+            description="COM_REPERTOIRE_SHOW_DEMO_AUDIO_DESC"
+            class="btn-group btn-group-yesno"
+            default="1"
+        >
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field
+            name="show_demo_video"
+            type="radio"
+            label="COM_REPERTOIRE_SHOW_DEMO_VIDEO"
+            description="COM_REPERTOIRE_SHOW_DEMO_VIDEO_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >

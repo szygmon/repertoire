@@ -7,7 +7,7 @@ $document->addStyleSheet('media/com_repertoire/css/jquery.dataTables.css');
 $document->addScript('media/com_repertoire/js/jquery-1.10.2.min.js');
 $document->addScript('media/com_repertoire/js/jquery.dataTables.js');
 
-$span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
+$span = ($this->params->get('show_demo_audio', 1) && $this->params->get('show_demo_video', 1)) ? 'rowspan="2"' : '';
 ?>
 <div class="row-fluid">
     <div class="span4"><h2><?php echo JText::_('COM_REPERTOIRE_EVENT_NAME'); ?></h2></div>
@@ -23,27 +23,27 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
         <table id="repertoire-list"  class="table table-bordered table-hover dataTable">
             <thead>
                 <tr>
-                    <th <?php echo $span; ?> style="width: 1%"></th>
-                    <th <?php echo $span; ?> style="width: 34%"><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
-                    <th <?php echo $span; ?> style="width: 20%"><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
+                    <th <?php echo $span; ?> ></th>
+                    <th <?php echo $span; ?> ><?php echo JText::_('COM_REPERTOIRE_TITLE'); ?></th>
+                    <th <?php echo $span; ?> ><?php echo JText::_('COM_REPERTOIRE_ARTIST'); ?></th>
                     <?php if ($this->params->get('show_language', 1)): ?>
-                        <th <?php echo $span; ?> style="width: 5%"><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
+                        <th <?php echo $span; ?> ><?php echo JText::_('COM_REPERTOIRE_LANGUAGE'); ?></th>
                         <?php
                     endif;
                     if ($this->params->get('show_category', 1)):
                         ?>
-                        <th <?php echo $span; ?> style="width: 15%"><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
+                        <th <?php echo $span; ?> ><?php echo JText::_('COM_REPERTOIRE_CATEGORY'); ?></th>
                         <?php
                     endif;
-                    if ($this->params->get('show_demo', 1)):
+                    if ($this->params->get('show_demo_audio', 1) || $this->params->get('show_demo_video', 1)):
                         ?>
-                        <th colspan="2" class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
+                        <th <?php if ($this->params->get('show_demo_audio', 1) && $this->params->get('show_demo_video', 1)): ?> colspan="2" <?php endif; ?> class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO'); ?></th>
                     <?php endif; ?>
                 </tr>
-                <?php if ($this->params->get('show_demo', 1)): ?>
+                <?php if ($this->params->get('show_demo_audio', 1) && $this->params->get('show_demo_video', 1)): ?>
                     <tr>
-                        <th class="center" style="width: 20%"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
-                        <th class="center" style="width: 5%"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
+                        <th class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO_AUDIO'); ?></th>
+                        <th class="center"><?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?></th>
                     </tr>
                 <?php endif; ?>
             </thead>
@@ -71,22 +71,26 @@ $span = $this->params->get('show_demo', 1) ? 'rowspan="2"' : '';
                             <td><?php echo $row->category; ?></td>
                             <?php
                         endif;
-                        if ($this->params->get('show_demo', 1)):
+                        if ($this->params->get('show_demo_audio', 1) || $this->params->get('show_demo_video', 1)):
                             ?>
-                            <td>
-                                <?php if ($row->demo_audio): ?>
-                                    <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
-                                        <param name="wmode" value="transparent">
-                                        <param name="movie" value="plugins/content/josdewplayer/dewplayer.swf">
-                                        <param name="flashvars" value="mp3=images/demomp3/<?php echo $row->demo_audio; ?>&amp;autostart=0&amp;autoreplay=0&amp;showtime=1">
-                                    </object>
-                                <?php endif ?>
-                            </td>
-                            <td class="center" style="padding: 7px;">
-                                <?php if ($row->demo_video): ?>
-                                    <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="media/com_repertoire/images/yt.png" alt="<?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?>" /></a>
-                                <?php endif ?>
-                            </td>
+                            <?php if ($this->params->get('show_demo_audio', 1)): ?>
+                                <td>
+                                    <?php if ($row->demo_audio): ?>
+                                        <object type="application/x-shockwave-flash" data="plugins/content/josdewplayer/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
+                                            <param name="wmode" value="transparent">
+                                            <param name="movie" value="plugins/content/josdewplayer/dewplayer.swf">
+                                            <param name="flashvars" value="mp3=images/demomp3/<?php echo $row->demo_audio; ?>&amp;autostart=0&amp;autoreplay=0&amp;showtime=1">
+                                        </object>
+                                    <?php endif ?>
+                                </td>
+                            <?php endif; ?>
+                            <?php if ($this->params->get('show_demo_video', 1)): ?>
+                                <td class="center" style="padding: 7px;">
+                                    <?php if ($row->demo_video): ?>
+                                        <a href="<?php echo $row->demo_video; ?>" target="_blank"><img src="media/com_repertoire/images/yt.png" alt="<?php echo JText::_('COM_REPERTOIRE_DEMO_VIDEO'); ?>" /></a>
+                                    <?php endif; ?>
+                                </td>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
