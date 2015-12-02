@@ -25,7 +25,7 @@ class RepertoireControllerImport extends JControllerForm {
         if ($result) {
             $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_IMPORT_SUCCESS'));
         } else {
-            $this->setRedirect('index.php?option=com_repertoire', JText::_('COM_REPERTOIRE_IMPORT_ERROR'));
+            $this->setRedirect('index.php?option=com_repertoire&view=import', JText::_('COM_REPERTOIRE_IMPORT_ERROR'), 'error');
         }
     }
 }

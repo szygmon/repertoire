@@ -21,7 +21,7 @@ if (!empty($this->sidebar)) :
                                     <label id="jform_excel-lbl" for="jform_excel" class="hasTooltip" title="" data-original-title="<strong><?php echo JText::_('COM_REPERTOIRE_EXCEL_FILE'); ?></strong><br /><?php echo JText::_('COM_REPERTOIRE_EXCEL_FILE_INFO'); ?>"><?php echo JText::_('COM_REPERTOIRE_EXCEL_FILE'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input type="file" name="jform[excel]" id="jform_excel" accept="application/vnd.ms-excel" size="102400">
+                                    <input type="file" name="jform[excel]" id="jform_excel" accept="application/vnd.ms-excel" size="102400" required>
                                 </div>
                             </div>
                         </div>
